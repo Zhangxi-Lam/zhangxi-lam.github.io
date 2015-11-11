@@ -330,6 +330,43 @@ body {
 #header:after {
   bottom: 0;
 }
+#header-bottom {
+  margin: 0 auto;
+  min-width: 220px;
+  max-width: 220px;
+  height: 40px;
+  position: relative;
+  top: 50%;
+  margin-top: 40px;
+}
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  left: 0px;
+  background-position: -10px -10px;
+}
+.primary .icon {
+  background-image: url("../images/email.png");
+}
+.btn {
+  background-color: #edf2f9;
+  color: #6d757a;
+  display: inline-block;
+  text-align: center;
+  width: 80px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 32px;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.primary {
+  background-color: #00a1d6;
+  color: #fff;
+}
 #header-outer {
   height: 100%;
   position: relative;
