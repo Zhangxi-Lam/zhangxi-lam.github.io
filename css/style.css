@@ -423,6 +423,13 @@ body {
   height: 100%;
   z-index: -1;
 }
+#header-name {
+  text-align: center;
+  height: 40px;
+  position: absolute;
+  top: 45%;
+  left: 0;
+}
 #header-title {
   text-align: center;
   height: 40px;
