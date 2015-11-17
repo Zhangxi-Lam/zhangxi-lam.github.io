@@ -107,13 +107,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[每日一题] (石之游戏)<br><strong>n堆石头排成一行，你每次可以把相邻的2堆石头聚成1堆，聚合后的石头数会成为你的分数的一部分。<br>问当进行n-1次，所有石头聚成一堆后，怎么使得总分最小。</strong><br>例子: [3, 4, 3]<br>&emsp;&emsp;第一次 3+4=7 -&gt; [7, 3]<br>&emsp;&emsp;第二次 (7) + 7 + 3 = 17 -&gt; [17]<br>&emsp;&emsp;总分17最少。<br><br>Follow-up(Google onsite): 变成一个环<br><br><strong>*解题思路*</strong><br>暴力解法: 观察题目后发现题目的关键在于使得每次加出来的和最少。那么这道题是否符合贪心性质，也即每一步都选择当前的最优解(选当前和最小的两个相邻的数)，可以求得全局最优解呢？<br><br>答案是可以的，可以用<strong>数学归纳法</strong>证明<br><br>Base Case:<br>&emsp;&emsp;首先假设n = 1, 此时当前必须选使得和最小的数，所以成立<br>&emsp;&emsp;n = 2, 此时也必须选使得当前和最小的数，所以成立<br><br>Deduction:<br>&emsp;&emsp; 假设n = k-1, 使得和最小的选择符合贪心性质<br>&emsp;&emsp; 当n = k的时候，此时数组在做最后一步合并的时候，一定会选择两个堆n1和n2，而n1和n2都是由(1…n-1)个数组成的使当前分数最小的堆，因此n1和n2都是按照贪心选择生成的堆。而我们在合并这两个堆的时候也使用了一次贪心选择<br><br>所以我们可以得出这道题是符合<strong>贪心性质</strong>的<br><br><em>Python:</em><br><img src="../../picuture/StoneGame.png" alt="Python Code"><br></p>
+        <p>[每日一题] (石之游戏)<br><strong>n堆石头排成一行，你每次可以把相邻的2堆石头聚成1堆，聚合后的石头数会成为你的分数的一部分。<br>问当进行n-1次，所有石头聚成一堆后，怎么使得总分最小。</strong><br>例子: [3, 4, 3]<br>&emsp;&emsp;第一次 3+4=7 -&gt; [7, 3]<br>&emsp;&emsp;第二次 (7) + 7 + 3 = 17 -&gt; [17]<br>&emsp;&emsp;总分17最少。<br><br>Follow-up(Google onsite): 变成一个环<br><br><strong>*解题思路*</strong><br>暴力解法: 观察题目后发现题目的关键在于使得每次加出来的和最少。那么这道题是否符合贪心性质，也即每一步都选择当前的最优解(选当前和最小的两个相邻的数)，可以求得全局最优解呢？<br><br>答案是可以的，可以用<strong>数学归纳法</strong>证明<br><br>Base Case:<br>&emsp;&emsp;首先假设n = 1, 此时当前必须选使得和最小的数，所以成立<br>&emsp;&emsp;n = 2, 此时也必须选使得当前和最小的数，所以成立<br><br>Deduction:<br>&emsp;&emsp; 假设n = k-1, 使得和最小的选择符合贪心性质<br>&emsp;&emsp; 当n = k的时候，此时数组在做最后一步合并的时候，一定会选择两个堆n1和n2，而n1和n2都是由(1…n-1)个数组成的使当前分数最小的堆，因此n1和n2都是按照贪心选择生成的堆。而我们在合并这两个堆的时候也使用了一次贪心选择<br><br>所以我们可以得出这道题是符合<strong>贪心性质</strong>的<br><br><em>Python:</em><br><img src="../../picture/StoneGame.png" alt="Python Code"><br></p>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/16/每日一题1-石之游戏/" data-id="cih2t2zy10003fx9tw1iqaqlh" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/16/每日一题1-石之游戏/" data-id="cih2thowp0003zy9td5gomn93" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题-Google/">每日一题 Google</a></li></ul>
@@ -152,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cih2t2zxi0000fx9t3x3nhw5u" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cih2thow50000zy9tkffuapq9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乱七八糟/">乱七八糟</a></li></ul>
