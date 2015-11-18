@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zhangxi-Lam的博客</title>
+  <title>每日一题-二叉树最长连续路径 | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/index.html">
+  <meta name="description" content="[每日一题] (二叉树最长连续路径)在一个二叉树中找出最长连续递增的path，输出path中node的个数。path只能从上到下Follow-up：path可以从下到上然后从上到下
+
+解题思路本次的代码没有经过具体测试，仅作讨论用途-.-原题: 使用递归，每次都计算当前最长路径长度Follow-up: 使用递归，每次递归的时候计算以当前结点为子树时的最长路径以及与父结点的连续路径。&amp;emsp;&amp;e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一题-二叉树最长连续路径">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2015/11/17/2-每日一题-二叉树最长连续路径/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
+<meta property="og:description" content="[每日一题] (二叉树最长连续路径)在一个二叉树中找出最长连续递增的path，输出path中node的个数。path只能从上到下Follow-up：path可以从下到上然后从上到下
+
+解题思路本次的代码没有经过具体测试，仅作讨论用途-.-原题: 使用递归，每次都计算当前最长路径长度Follow-up: 使用递归，每次递归的时候计算以当前结点为子树时的最长路径以及与父结点的连续路径。&amp;emsp;&amp;e">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="每日一题-二叉树最长连续路径">
+<meta name="twitter:description" content="[每日一题] (二叉树最长连续路径)在一个二叉树中找出最长连续递增的path，输出path中node的个数。path只能从上到下Follow-up：path可以从下到上然后从上到下
+
+解题思路本次的代码没有经过具体测试，仅作讨论用途-.-原题: 使用递归，每次都计算当前最长路径长度Follow-up: 使用递归，每次递归的时候计算以当前结点为子树时的最长路径以及与父结点的连续路径。&amp;emsp;&amp;e">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -83,9 +89,7 @@
 </header>
 
         <div class="outer">
-          <section id="main">
-  
-    <article id="post-2-每日一题-二叉树最长连续路径" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main"><article id="post-2-每日一题-二叉树最长连续路径" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/17/2-每日一题-二叉树最长连续路径/" class="article-date">
   <time datetime="2015-11-18T00:25:12.000Z" itemprop="datePublished">2015-11-17</time>
@@ -98,8 +102,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/17/2-每日一题-二叉树最长连续路径/">每日一题-二叉树最长连续路径</a>
+    <h1 class="article-title" itemprop="name">
+      每日一题-二叉树最长连续路径
     </h1>
   
 
@@ -123,90 +127,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-1_每日一题-石之游戏" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/16/1_每日一题-石之游戏/" class="article-date">
-  <time datetime="2015-11-17T00:38:49.000Z" itemprop="datePublished">2015-11-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/16/1_每日一题-石之游戏/">每日一题-石之游戏</a>
-    </h1>
+    <a href="/2015/11/16/1_每日一题-石之游戏/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每日一题-石之游戏</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一题] (石之游戏)<br><strong>n堆石头排成一行，你每次可以把相邻的2堆石头聚成1堆，聚合后的石头数会成为你的分数的一部分。<br>问当进行n-1次，所有石头聚成一堆后，怎么使得总分最小。</strong><br>例子: [3, 4, 3]<br>&emsp;&emsp;第一次 3+4=7 -&gt; [7, 3]<br>&emsp;&emsp;第二次 (7) + 7 + 3 = 17 -&gt; [17]<br>&emsp;&emsp;总分17最少。<br><br>Follow-up(Google onsite): 变成一个环<br><br></p><h4>解题思路</h4><br>使用动态规划,思路可参考算法导论的矩阵链乘法。<br>状态转移矩阵:<br>&emsp;&emsp;p[i][j] = min[p[i][k] + p[k+1][j] + s[i][j]] (i&lt;=k&lt;=j)<br>&emsp;&emsp;s[i][j] = s[i][k] + s[k+1][j]<br>其中p[i][j]表示从i合并到j所得的最小分数，s[i][j]表示从i合并到j所得出的数<br><br><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^3)</span><br><span class="line">"""</span></span><br><span class="line">stone = [<span class="number">16</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">17</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">17</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">6</span>,<span class="number">14</span>,<span class="number">21</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">14</span>,<span class="number">6</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">14</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">12</span>,<span class="number">4</span>,<span class="number">19</span>,<span class="number">5</span>,<span class="number">14</span>,<span class="number">22</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">12</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">17</span>,<span class="number">21</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">18</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">20</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">14</span>,<span class="number">22</span>,<span class="number">14</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">2</span>,<span class="number">13</span>,<span class="number">15</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">3</span>,<span class="number">18</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">18</span>,<span class="number">21</span>]</span><br><span class="line">N = len(stone) </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stoneGame</span><span class="params">(self, stone, N)</span>:</span></span><br><span class="line">        p = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(N)] <span class="comment"># p[i][j]代表合并i到j的最优解</span></span><br><span class="line">        s = [[<span class="number">0</span> <span class="keyword">if</span> i != j <span class="keyword">else</span> stone[i] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(N)] <span class="comment"># s[i][j]代表合并i到j后生成的值</span></span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> xrange(<span class="number">1</span>, N): <span class="comment"># 循环N-1次， 每次得到长度为l+1的石头堆的最优解</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N-l):</span><br><span class="line">                j = i + l <span class="comment"># 计算当前尾部j</span></span><br><span class="line">                p[i][j] = <span class="keyword">None</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> xrange(i, j):</span><br><span class="line">                    <span class="keyword">if</span> p[i][j] == <span class="keyword">None</span>:</span><br><span class="line">                        s[i][j] = s[i][k] + s[k+<span class="number">1</span>][j]</span><br><span class="line">                        p[i][j] = p[i][k] + p[k+<span class="number">1</span>][j] + s[i][j]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        p[i][j] = min(p[i][j], p[i][k] + p[k+<span class="number">1</span>][j] + s[i][j])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p[<span class="number">0</span>][N-<span class="number">1</span>] <span class="comment"># p[0][N-1]代表合并0到N-1的最优解，即为答案</span></span><br></pre></td></tr></table></figure><br><br><p></p>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/16/1_每日一题-石之游戏/" data-id="cih431g5k0000ij9tnmcop7w4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-Hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/15/Hello-world/" class="article-date">
-  <time datetime="2015-11-16T03:35:17.000Z" itemprop="datePublished">2015-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/15/Hello-world/">Hello world</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……<br><br>&emsp;&emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧！<br><br>&emsp;&emsp;Markdown用得还不习惯，第一篇博客就到这里了吧。</p><br><p>&emsp;&emsp;总之希望大家可以多捧场啦:)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cih431g620005ij9t3soe3f0o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乱七八糟/">乱七八糟</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
           
             <aside id="sidebar">
