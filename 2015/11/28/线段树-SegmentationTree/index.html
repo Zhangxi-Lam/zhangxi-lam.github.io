@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | Zhangxi-Lam的博客</title>
+  <title>线段树-SegmentationTree | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/archives/2015/page/3/index.html">
+  <meta name="description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
+线段树的特征:  二叉树  每个节点表示一个区间的最大值  左儿子 = 平分后左区间，右儿子 = 平分后右区间  不可增减节点(线段数结点总数需要在最开始就给定)  空间复杂度: O(n)
+线段树的操作:
+线段树的查询: O(logn)  查询的区间 和 线段树节点区间 相等 -&amp;gt; 直接返回  查询的区间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树-SegmentationTree">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
+<meta property="og:description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
+线段树的特征:  二叉树  每个节点表示一个区间的最大值  左儿子 = 平分后左区间，右儿子 = 平分后右区间  不可增减节点(线段数结点总数需要在最开始就给定)  空间复杂度: O(n)
+线段树的操作:
+线段树的查询: O(logn)  查询的区间 和 线段树节点区间 相等 -&amp;gt; 直接返回  查询的区间">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="线段树-SegmentationTree">
+<meta name="twitter:description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
+线段树的特征:  二叉树  每个节点表示一个区间的最大值  左儿子 = 平分后左区间，右儿子 = 平分后右区间  不可增减节点(线段数结点总数需要在最开始就给定)  空间复杂度: O(n)
+线段树的操作:
+线段树的查询: O(logn)  查询的区间 和 线段树节点区间 相等 -&amp;gt; 直接返回  查询的区间">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -84,58 +93,65 @@
 </header>
 
         <div class="outer">
-          <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/11/16/1_每日一题-石之游戏/" class="archive-article-date">
-  <time datetime="2015-11-17T00:38:49.000Z" itemprop="datePublished">Nov 16</time>
+          <section id="main"><article id="post-线段树-SegmentationTree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/线段树-SegmentationTree/" class="article-date">
+  <time datetime="2015-11-28T21:42:18.000Z" itemprop="datePublished">2015-11-28</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/16/1_每日一题-石之游戏/">每日一题-石之游戏</a>
+    <h1 class="article-title" itemprop="name">
+      线段树-SegmentationTree
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/11/15/Hello-world/" class="archive-article-date">
-  <time datetime="2015-11-16T03:35:17.000Z" itemprop="datePublished">Nov 15</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/15/Hello-world/">Hello world</a>
-    </h1>
-  
+        <p><strong>线段树的优点:</strong><br>&emsp;&emsp;O(logn)时间内，在一段区间中求最大最小值</p>
+<p><strong>线段树的特征:</strong><br>  <li>二叉树</li><br>  <li>每个节点表示一个区间的最大值</li><br>  <li>左儿子 = 平分后左区间，右儿子 = 平分后右区间</li><br>  <li>不可增减节点(线段数结点总数需要在最开始就给定)</li><br>  <li>空间复杂度: O(n)</li></p>
+<p><strong>线段树的操作:</strong></p>
+<p>线段树的查询: O(logn)<br>  <li>查询的区间 和 线段树节点区间 相等 -&gt; 直接返回</li><br>  <li>查询的区间 被 线段树节点区间 包含-&gt; 递归向下搜索左右子树</li><br>  <li>查询的区间 和 线段树节点区间 不相交 -&gt; 结束</li><br>  <li>查询的区间 和 线段树节点区间 相交且不相等 -&gt; 分裂查询区间</li></p>
+<p>线段树的建立: O(n)<br>  <li>自上而下递归分裂</li><br>  <li>自下而上回溯更新</li></p>
+<p>线段树的更新: O(logn)<br>  <li>自上而下递归查询</li><br>  <li>自下而上回溯更新</li></p>
+<p><strong>问题特征:</strong><br>&emsp;&emsp;对区间的查询</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihjmnaas000ntn9t1d0f0vhp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每日一题-Best_Time_to_Buy_and_Sell_Stock_with_Cooldown</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
           
             <aside id="sidebar">
