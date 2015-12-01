@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zhangxi-Lam的博客</title>
+  <title>每日一刷-Minimum_Height_Trees | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/index.html">
+  <meta name="description" content="[每日一刷] (Minimum Height Trees)For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一刷-Minimum_Height_Trees">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2015/12/01/2_每日一刷-Minimum_Height_Trees/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
+<meta property="og:description" content="[每日一刷] (Minimum Height Trees)For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with m">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="每日一刷-Minimum_Height_Trees">
+<meta name="twitter:description" content="[每日一刷] (Minimum Height Trees)For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with m">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -84,9 +84,7 @@
 </header>
 
         <div class="outer">
-          <section id="main">
-  
-    <article id="post-2_每日一刷-Minimum_Height_Trees" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main"><article id="post-2_每日一刷-Minimum_Height_Trees" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/" class="article-date">
   <time datetime="2015-12-01T20:13:41.000Z" itemprop="datePublished">2015-12-01</time>
@@ -103,8 +101,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
+    <h1 class="article-title" itemprop="name">
+      每日一刷-Minimum_Height_Trees
     </h1>
   
 
@@ -126,111 +124,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-1_每日一刷-Burst-Balloon" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/30/1_每日一刷-Burst-Balloon/" class="article-date">
-  <time datetime="2015-12-01T03:36:47.000Z" itemprop="datePublished">2015-11-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/30/1_每日一刷-Burst-Balloon/">每日一刷-Burst_Balloon</a>
-    </h1>
+    <a href="/2015/11/30/1_每日一刷-Burst-Balloon/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每日一刷-Burst_Balloon</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Burst Balloon)</p><br><strong>Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] <em> nums[i] </em> nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.<br>Find the maximum coins you can collect by bursting the balloons wisely.</strong><p></p>
-<p><strong>Example:</strong><br>Given [3, 1, 5, 8]<br>Return 167</p>
-<p></p><h4>解题思路</h4><br>看到maximum coins, 发现是一道求最优解的题，马上想到使用动态规划<br>本题的最优子结构是opt[i~j] = opt[i~k-1] + score[k] + opt[k+1~j], 其中k指的是最后一个爆破的气球的位置<br>本题的trick在于在算最优子结构的时候要在两边多算一个位置。例如算opt[1,2]的时候要将0, 3都算进去<p></p>
-<p>代码虽然在leetcode上超时了，不过同样的做法使用JAVA和C++却可以通过，可能还是因为Python太慢了吧-.-</p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^3)</span><br><span class="line">"""</span></span><br><span class="line">prices = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxCoins</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        nums.insert(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        nums.append(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># table[i][j] stores the optimal result of bursting balloon starts at i and the length is j</span></span><br><span class="line">        <span class="comment"># balloon starts from 1 to n</span></span><br><span class="line">        table = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-I+<span class="number">1</span>)] <span class="keyword">for</span> I <span class="keyword">in</span> xrange(n+<span class="number">1</span>)]</span><br><span class="line">        table.insert(<span class="number">0</span>, []) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            table[i][<span class="number">1</span>] = nums[i-<span class="number">1</span>] * nums[i] * nums[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> xrange(<span class="number">2</span>, n+<span class="number">1</span>): <span class="comment"># length from 2 to n</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, n-l+<span class="number">2</span>): <span class="comment"># balloon can starts from balloon 1 to balloon n-l+1</span></span><br><span class="line">                maximum = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> xrange(j, j+l): <span class="comment"># balloon i is the last burst balloon</span></span><br><span class="line">                    <span class="keyword">if</span> i &lt; j+l-<span class="number">1</span>:</span><br><span class="line">                      temp = table[j][i-j] + table[i+<span class="number">1</span>][j+l-i-<span class="number">1</span>] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                      temp = table[j][i-j] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    maximum = max(maximum, temp)</span><br><span class="line">                table[j][l] = maximum</span><br><span class="line">        <span class="keyword">return</span> table[<span class="number">1</span>][n]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/30/1_每日一刷-Burst-Balloon/" data-id="cihntscjy0000199t7ho3andz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-线段树-SegmentationTree" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/28/线段树-SegmentationTree/" class="article-date">
-  <time datetime="2015-11-28T21:42:18.000Z" itemprop="datePublished">2015-11-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/28/线段树-SegmentationTree/">线段树-SegmentationTree</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>线段树的优点:</strong><br>&emsp;&emsp;O(logn)时间内，在一段区间中求最大最小值</p>
-<p><strong>线段树的特征:</strong><br>  <li>二叉树</li><br>  <li>每个节点表示一个区间的最大值</li><br>  <li>左儿子 = 平分后左区间，右儿子 = 平分后右区间</li><br>  <li>不可增减节点(线段数结点总数需要在最开始就给定)</li><br>  <li>空间复杂度: O(n)</li></p>
-<p><strong>线段树的操作:</strong></p>
-<p>线段树的查询: O(logn)<br>  <li>查询的区间 和 线段树节点区间 相等 -&gt; 直接返回</li><br>  <li>查询的区间 被 线段树节点区间 包含-&gt; 递归向下搜索左右子树</li><br>  <li>查询的区间 和 线段树节点区间 不相交 -&gt; 结束</li><br>  <li>查询的区间 和 线段树节点区间 相交且不相等 -&gt; 分裂查询区间</li></p>
-<p>线段树的建立: O(n)<br>  <li>自上而下递归分裂</li><br>  <li>自下而上回溯更新</li></p>
-<p>线段树的更新: O(logn)<br>  <li>自上而下递归查询</li><br>  <li>自下而上回溯更新</li></p>
-<p><strong>问题特征:</strong><br>&emsp;&emsp;对区间的查询</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihntsckk0007199tipzbq02x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </section>
           
             <aside id="sidebar">
