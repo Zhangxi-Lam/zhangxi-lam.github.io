@@ -86,6 +86,49 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-4_每日一题-字符串乘积" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/20/4_每日一题-字符串乘积/" class="article-date">
+  <time datetime="2015-11-21T02:49:19.000Z" itemprop="datePublished">2015-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/20/4_每日一题-字符串乘积/">每日一题-字符串乘积</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[每日一题] (字符串乘积)<br><strong>Given a list of words, return the maximum numerical product value of two words length, where the two words don’t share any common letters.</strong><br>For this example, [cat, dog, day, space, telephone]<br>cat-&gt;3 and telephone-&gt;9, return 3X9=27<br><br></p><h4>解题思路</h4><br>这题暂时没什么好的思路，唯一想到可以优化的地方就是可以使用bit manipulation来判断字符是否重复。<br>可以使用32为二进制数来代表每个单词(假设26个字母), 判断字符是否重复时就直接与运算判断是否为0。<br>剩下的用Brute Force<br><br><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line">words = [<span class="string">"cat"</span>, <span class="string">"dog"</span>, <span class="string">"day"</span>, <span class="string">"space"</span>, <span class="string">"telephone"</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordMul</span><span class="params">(self, words)</span>:</span></span><br><span class="line">        n = len(words)</span><br><span class="line">        bit = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)] <span class="comment"># binary number for each word</span></span><br><span class="line">        wl = [len(words[i]) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)] <span class="comment"># length of each word</span></span><br><span class="line">        self.produceBit(words, bit, wl)</span><br><span class="line">        maximum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i, n):</span><br><span class="line">                <span class="keyword">if</span> bit[i] &amp; bit[j] == <span class="number">0</span>:</span><br><span class="line">                    maximum = max(maximum, wl[i] * wl[j])</span><br><span class="line">        <span class="keyword">return</span> maximum</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">produceBit</span><span class="params">(self, words, bit, wl)</span>:</span></span><br><span class="line">        alpha = <span class="string">"abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">        dict = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(alpha)):</span><br><span class="line">            dict[alpha[i]] = i </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(words)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(wl[i]):</span><br><span class="line">                d = dict[words[i][j]]</span><br><span class="line">                bit[i] = bit[i] | <span class="number">1</span> &lt;&lt; d</span><br></pre></td></tr></table></figure><br><br><p></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/20/4_每日一题-字符串乘积/" data-id="cihp3ai0a000m9s9tlgtmlv2q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-3_每日一题-Trap-Water" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/19/3_每日一题-Trap-Water/" class="article-date">
@@ -117,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/19/3_每日一题-Trap-Water/" data-id="cihntscsf000r199t74op7r5r" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/19/3_每日一题-Trap-Water/" data-id="cihp3ai0d000r9s9t526qkb2j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lintcode/">Lintcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
@@ -163,54 +206,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/17/2_每日一题-二叉树最长连续路径/" data-id="cihntscsj000w199tbd9yogg3" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/17/2_每日一题-二叉树最长连续路径/" data-id="cihp3ai0k00109s9t7e9l3gmk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1_每日一题-石之游戏" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/16/1_每日一题-石之游戏/" class="article-date">
-  <time datetime="2015-11-17T00:38:49.000Z" itemprop="datePublished">2015-11-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/16/1_每日一题-石之游戏/">每日一题-石之游戏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一题] (石之游戏)<br><strong>n堆石头排成一行，你每次可以把相邻的2堆石头聚成1堆，聚合后的石头数会成为你的分数的一部分。<br>问当进行n-1次，所有石头聚成一堆后，怎么使得总分最小。</strong><br>例子: [3, 4, 3]<br>&emsp;&emsp;第一次 3+4=7 -&gt; [7, 3]<br>&emsp;&emsp;第二次 (7) + 7 + 3 = 17 -&gt; [17]<br>&emsp;&emsp;总分17最少。<br><br>Follow-up(Google onsite): 变成一个环<br><br></p><h4>解题思路</h4><br>使用动态规划,思路可参考算法导论的矩阵链乘法。<br>状态转移矩阵:<br>&emsp;&emsp;p[i][j] = min[p[i][k] + p[k+1][j] + s[i][j]] (i&lt;=k&lt;=j)<br>&emsp;&emsp;s[i][j] = s[i][k] + s[k+1][j]<br>其中p[i][j]表示从i合并到j所得的最小分数，s[i][j]表示从i合并到j所得出的数<br><br><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^3)</span><br><span class="line">"""</span></span><br><span class="line">stone = [<span class="number">16</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">17</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">17</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">17</span>,<span class="number">6</span>,<span class="number">14</span>,<span class="number">21</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">14</span>,<span class="number">6</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">14</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">12</span>,<span class="number">4</span>,<span class="number">19</span>,<span class="number">5</span>,<span class="number">14</span>,<span class="number">22</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">12</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">17</span>,<span class="number">21</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">18</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">20</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">14</span>,<span class="number">22</span>,<span class="number">14</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">2</span>,<span class="number">13</span>,<span class="number">15</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">3</span>,<span class="number">18</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">18</span>,<span class="number">21</span>]</span><br><span class="line">N = len(stone) </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stoneGame</span><span class="params">(self, stone, N)</span>:</span></span><br><span class="line">        p = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(N)] <span class="comment"># p[i][j]代表合并i到j的最优解</span></span><br><span class="line">        s = [[<span class="number">0</span> <span class="keyword">if</span> i != j <span class="keyword">else</span> stone[i] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(N)] <span class="comment"># s[i][j]代表合并i到j后生成的值</span></span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> xrange(<span class="number">1</span>, N): <span class="comment"># 循环N-1次， 每次得到长度为l+1的石头堆的最优解</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N-l):</span><br><span class="line">                j = i + l <span class="comment"># 计算当前尾部j</span></span><br><span class="line">                p[i][j] = <span class="keyword">None</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> xrange(i, j):</span><br><span class="line">                    <span class="keyword">if</span> p[i][j] == <span class="keyword">None</span>:</span><br><span class="line">                        s[i][j] = s[i][k] + s[k+<span class="number">1</span>][j]</span><br><span class="line">                        p[i][j] = p[i][k] + p[k+<span class="number">1</span>][j] + s[i][j]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        p[i][j] = min(p[i][j], p[i][k] + p[k+<span class="number">1</span>][j] + s[i][j])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p[<span class="number">0</span>][N-<span class="number">1</span>] <span class="comment"># p[0][N-1]代表合并0到N-1的最优解，即为答案</span></span><br></pre></td></tr></table></figure><br><br><p></p>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/16/1_每日一题-石之游戏/" data-id="cihntscsr000z199tw9iesjbd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
 
     </footer>
   </div>
@@ -232,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -241,7 +240,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -250,7 +249,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 13.33px;">Google</a><a href="/tags/Leetcode/" style="font-size: 16.67px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 13.33px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 20px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 17.5px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 15px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 20px;">每日一题</a>
     </div>
   </div>
 
@@ -259,7 +258,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -269,6 +268,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
+          </li>
         
           <li>
             <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
@@ -284,10 +287,6 @@
         
           <li>
             <a href="/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/">每日一题-Best_Time_to_Buy_and_Sell_Stock_with_Cooldown</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/23/5_每日一题-A-B/">每日一题-A+B-</a>
           </li>
         
       </ul>
