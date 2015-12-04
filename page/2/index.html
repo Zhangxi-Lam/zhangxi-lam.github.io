@@ -86,6 +86,53 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-1_每日一刷-Burst-Balloon" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/30/1_每日一刷-Burst-Balloon/" class="article-date">
+  <time datetime="2015-12-01T03:36:47.000Z" itemprop="datePublished">2015-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/30/1_每日一刷-Burst-Balloon/">每日一刷-Burst_Balloon</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Burst Balloon)</p><br><strong>Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] <em> nums[i] </em> nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.<br>Find the maximum coins you can collect by bursting the balloons wisely.</strong><p></p>
+<p><strong>Example:</strong><br>Given [3, 1, 5, 8]<br>Return 167</p>
+<p></p><h4>解题思路</h4><br>看到maximum coins, 发现是一道求最优解的题，马上想到使用动态规划<br>本题的最优子结构是opt[i~j] = opt[i~k-1] + score[k] + opt[k+1~j], 其中k指的是最后一个爆破的气球的位置<br>本题的trick在于在算最优子结构的时候要在两边多算一个位置。例如算opt[1,2]的时候要将0, 3都算进去<p></p>
+<p>代码虽然在leetcode上超时了，不过同样的做法使用JAVA和C++却可以通过，可能还是因为Python太慢了吧-.-</p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^3)</span><br><span class="line">"""</span></span><br><span class="line">prices = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxCoins</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        nums.insert(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        nums.append(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># table[i][j] stores the optimal result of bursting balloon starts at i and the length is j</span></span><br><span class="line">        <span class="comment"># balloon starts from 1 to n</span></span><br><span class="line">        table = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-I+<span class="number">1</span>)] <span class="keyword">for</span> I <span class="keyword">in</span> xrange(n+<span class="number">1</span>)]</span><br><span class="line">        table.insert(<span class="number">0</span>, []) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            table[i][<span class="number">1</span>] = nums[i-<span class="number">1</span>] * nums[i] * nums[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> xrange(<span class="number">2</span>, n+<span class="number">1</span>): <span class="comment"># length from 2 to n</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, n-l+<span class="number">2</span>): <span class="comment"># balloon can starts from balloon 1 to balloon n-l+1</span></span><br><span class="line">                maximum = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> xrange(j, j+l): <span class="comment"># balloon i is the last burst balloon</span></span><br><span class="line">                    <span class="keyword">if</span> i &lt; j+l-<span class="number">1</span>:</span><br><span class="line">                      temp = table[j][i-j] + table[i+<span class="number">1</span>][j+l-i-<span class="number">1</span>] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                      temp = table[j][i-j] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    maximum = max(maximum, temp)</span><br><span class="line">                table[j][l] = maximum</span><br><span class="line">        <span class="keyword">return</span> table[<span class="number">1</span>][n]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/30/1_每日一刷-Burst-Balloon/" data-id="cihra0xsg0000uv9tsr9jz15l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-线段树-SegmentationTree" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/28/线段树-SegmentationTree/" class="article-date">
@@ -131,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihp3ahzy00079s9tt100yw49" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihra0xzh0007uv9tq2f07n4t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
@@ -177,55 +224,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/" data-id="cihp3ai05000e9s9ts645jesg" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/" data-id="cihra0xzm000euv9tosv422s8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5_每日一题-A-B" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/23/5_每日一题-A-B/" class="article-date">
-  <time datetime="2015-11-24T02:41:39.000Z" itemprop="datePublished">2015-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/23/5_每日一题-A-B/">每日一题-A+B-</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一题] (A+B-)<br><strong>给出两个字符串,s1和s2。s2中的+表示前面的字符重复2次，-代表前面的字符重复4次。问题是求s1中有多少个连续或不连续的s2。</strong><br>例子: s1 = “aaabbbb” , s2 = “a+b-“<br>输出: 3<br><br></p><h4>解题思路</h4><br>使用动态规划。具体思路说起来有点绕…总之算是一个比较麻烦的动态规划题。<br><br>用n数组存储到当前位置为止有多少个n子串，用n_1数组存储到当前位置为止有多少个n-1子串<br>状态转移函数是n[i] = n[i-1] + n_1[i-1] + n_1[i-2] + … + n_1[2]或n_1[4]，大概就是这个意思<br><br>代码没有经过很多测试，可能会有bug<br><p></p>
-
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#s1 = "aabbbbaacc"</span></span><br><span class="line"><span class="comment">#s2 = "a+b-c+"</span></span><br><span class="line"><span class="comment">#s1 = "aaabababbaabbccc"</span></span><br><span class="line"><span class="comment">#s2 = "a+b-c+"</span></span><br><span class="line"><span class="comment">#s1 = "aababaaabaaab"</span></span><br><span class="line"><span class="comment">#s1 = "aabaabaabcc"</span></span><br><span class="line"><span class="comment">#s2 = "a+b+c+"</span></span><br><span class="line"><span class="comment">#s1 = "waeginsapnaabangpisebbasepgnccccapisdnfngaabndlrjngeuiogbbegbuoecccc"</span></span><br><span class="line"><span class="comment">#s2 = "a+b+c-"</span></span><br><span class="line">s1 = <span class="string">"wweqwqaabddakswbbcc"</span></span><br><span class="line">s2 = <span class="string">"a+b+"</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aPlusbPlus</span><span class="params">(self, s1, s2)</span>:</span></span><br><span class="line">        pre = &#123;&#125; <span class="comment"># 记录当前字符的前一字符</span></span><br><span class="line">        index = &#123;&#125; <span class="comment"># 记录当前字符位置</span></span><br><span class="line">        count = &#123;&#125; <span class="comment"># 记录当前字符找了几个</span></span><br><span class="line">        bound = &#123;&#125; <span class="comment"># 记录当前字符要找几个</span></span><br><span class="line">        p = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(s2)/<span class="number">2</span>):</span><br><span class="line">            pre[s2[i*<span class="number">2</span>]] = p</span><br><span class="line">            index[s2[i*<span class="number">2</span>]] = <span class="number">0</span></span><br><span class="line">            count[s2[i*<span class="number">2</span>]] = <span class="number">0</span></span><br><span class="line">            bound[s2[i*<span class="number">2</span>]] = <span class="number">2</span> <span class="keyword">if</span> s2[i*<span class="number">2</span>+<span class="number">1</span>] == <span class="string">'+'</span> <span class="keyword">else</span> <span class="number">4</span></span><br><span class="line">            p = s2[i*<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        n_1 = [[<span class="number">0</span>, <span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(s1))]</span><br><span class="line">        n = [[<span class="number">0</span>, <span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(s1))]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(s1)):</span><br><span class="line">            c = s1[i]</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> index.keys():</span><br><span class="line">                <span class="keyword">if</span> c == s2[<span class="number">0</span>]: <span class="comment"># 当前字符为s2首字符</span></span><br><span class="line">                    count[c] += <span class="number">1</span></span><br><span class="line">                    sum = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(bound[c]):</span><br><span class="line">                        sum *= count[c] - j</span><br><span class="line">                    n[i] = [sum / bound[c], c]</span><br><span class="line">                    n_1[i] = [<span class="number">0</span>, c]</span><br><span class="line">                    index[c] = i</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count[c] += <span class="number">1</span></span><br><span class="line">                    n_1[i] = [n[index[pre[c]]][<span class="number">0</span>], c]</span><br><span class="line">                    <span class="keyword">if</span> count[c] &lt; bound[c]:</span><br><span class="line">                        n[i] = [<span class="number">0</span>, c]</span><br><span class="line">                    <span class="keyword">else</span> :</span><br><span class="line">                        n[i] = [n[index[c]][<span class="number">0</span>], c]</span><br><span class="line">                        count1, j = count[c] - <span class="number">1</span>, i-<span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> count1 &gt;= bound[c]-<span class="number">1</span> <span class="keyword">and</span> j &gt;= <span class="number">0</span>:</span><br><span class="line">                            <span class="keyword">if</span> n_1[j][<span class="number">1</span>] == c:</span><br><span class="line">                                n[i][<span class="number">0</span>] += n_1[j][<span class="number">0</span>]</span><br><span class="line">                                count1 -= <span class="number">1</span></span><br><span class="line">                            j -= <span class="number">1</span></span><br><span class="line">                    index[c] = i</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> n[index[s2[len(s2)-<span class="number">2</span>]]][<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/23/5_每日一题-A-B/" data-id="cihp3ai07000j9s9txlr3z4l6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
 
     </footer>
   </div>
@@ -247,7 +249,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">10</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -256,7 +258,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -274,7 +276,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -284,6 +286,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
+          </li>
         
           <li>
             <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
@@ -299,10 +305,6 @@
         
           <li>
             <a href="/2015/11/28/线段树-SegmentationTree/">线段树-SegmentationTree</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/">每日一题-Best_Time_to_Buy_and_Sell_Stock_with_Cooldown</a>
           </li>
         
       </ul>
