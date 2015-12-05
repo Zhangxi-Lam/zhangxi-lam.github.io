@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zhangxi-Lam的博客</title>
+  <title>每日一刷-Additive-Number | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/index.html">
+  <meta name="description" content="[每日一刷] (Additive Number)**Additive number is a string whose digits can form additive sequence.A valid additive sequence should contain at least three numbers. Except for the first two numbers, each su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一刷-Additive-Number">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
+<meta property="og:description" content="[每日一刷] (Additive Number)**Additive number is a string whose digits can form additive sequence.A valid additive sequence should contain at least three numbers. Except for the first two numbers, each su">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="每日一刷-Additive-Number">
+<meta name="twitter:description" content="[每日一刷] (Additive Number)**Additive number is a string whose digits can form additive sequence.A valid additive sequence should contain at least three numbers. Except for the first two numbers, each su">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -84,56 +84,7 @@
 </header>
 
         <div class="outer">
-          <section id="main">
-  
-    <article id="pos-6-每日一刷-Range-Sum-Query-2D-Immutable" class="article article-type-pos" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="article-date">
-  <time datetime="2015-12-05T20:40:21.000Z" itemprop="datePublished">2015-12-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Range Sum Query 2D Immutable)</p><br><strong>Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</strong><p></p>
-<p><strong>Example:</strong><br>Given matrix = [<br>  [3, 0, 1, 4, 2],<br>  [5, 6, 3, 2, 1],<br>  [1, 2, 0, 1, 5],<br>  [4, 1, 0, 1, 7],<br>  [1, 0, 3, 0, 5]<br>]</p>
-<p>sumRegion(2, 1, 4, 3) -&gt; 8<br>sumRegion(1, 1, 2, 2) -&gt; 11<br>sumRegion(1, 2, 2, 4) -&gt; 12</p>
-<p></p><h4>解题思路</h4><br>这题思路和一维的时候一致，可以使用动态规划也可以使用线段树。就这题来说使用动态规划会简单很多。<br>思路就是用dp[i][j]表示从(0, 0)到(i, j)的和<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 Query O(1), Build O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type matrix: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> matrix == []:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        r = len(matrix)</span><br><span class="line">        c = len(matrix[<span class="number">0</span>])</span><br><span class="line">        self.dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(c+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(r+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, r+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, c+<span class="number">1</span>):</span><br><span class="line">                self.dp[i][j] = self.dp[i-<span class="number">1</span>][j] + self.dp[i][j-<span class="number">1</span>] - self.dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + matrix[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.</span><br><span class="line">        :type row1: int</span><br><span class="line">        :type col1: int</span><br><span class="line">        :type row2: int</span><br><span class="line">        :type col2: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.dp[row2+<span class="number">1</span>][col2+<span class="number">1</span>] - self.dp[row1][col2+<span class="number">1</span>] - self.dp[row2+<span class="number">1</span>][col1] + self.dp[row1][col1]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cihtklfn5000j7e9teqiv43g7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5-每日一刷-Additive-Number" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main"><article id="post-5-每日一刷-Additive-Number" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/04/5-每日一刷-Additive-Number/" class="article-date">
   <time datetime="2015-12-04T18:02:13.000Z" itemprop="datePublished">2015-12-04</time>
@@ -150,8 +101,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
+    <h1 class="article-title" itemprop="name">
+      每日一刷-Additive-Number
     </h1>
   
 
@@ -176,61 +127,29 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
-  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">2015-12-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          每日一刷-Range-Sum-Query-2D-Immutable
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-    </h1>
   
+    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每日一刷-Super-Ugly-Number</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Super Ugly Number)</p><br><strong>Write a program to find the nth super ugly number.<br>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br>For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</strong><p></p>
-<p><strong>Example:</strong><br>Given: primes = [2, 7, 13, 19], n = 10<br>Return 26</p>
-<p></p><h4>解题思路</h4><br>这题就是不断的选下一个最小的质数，因此可以想到用heap。<br>既然是一个Super Ugly的题，就用一个Super Ugly的做法吧- -<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> *</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthSuperUglyNumber</span><span class="params">(self, n, primes)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :type primes: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        length = len(primes)</span><br><span class="line">        idxs = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length) ]</span><br><span class="line">        minLists = []</span><br><span class="line">        h = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length):</span><br><span class="line">            heappush(h, [primes[i], i])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n):</span><br><span class="line">            tup = heappop(h) <span class="comment"># 第i-1大的数</span></span><br><span class="line">            num, index = tup[<span class="number">0</span>], tup[<span class="number">1</span>]  <span class="comment"># 第i-1大的数和index</span></span><br><span class="line">            minLists.append([num, index])</span><br><span class="line">            idx = idxs[index]</span><br><span class="line">            <span class="keyword">while</span> minLists[idx][<span class="number">1</span>] &gt; index:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">            nextNum = primes[index] * minLists[idx][<span class="number">0</span>]</span><br><span class="line">            idxs[index] = idx + <span class="number">1</span></span><br><span class="line">            heappush(h, [nextNum, index])</span><br><span class="line">        <span class="keyword">return</span> h[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cihtklfni000z7e9tmsjiatq3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </section>
           
             <aside id="sidebar">
