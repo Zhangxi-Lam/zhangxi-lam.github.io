@@ -86,6 +86,52 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-2_每日一题-二叉树最长连续路径" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/17/2_每日一题-二叉树最长连续路径/" class="article-date">
+  <time datetime="2015-11-18T00:25:12.000Z" itemprop="datePublished">2015-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/17/2_每日一题-二叉树最长连续路径/">每日一题-二叉树最长连续路径</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[每日一题] (二叉树最长连续路径)<br><strong>在一个二叉树中找出最长连续递增的path，输出path中node的个数。path只能从上到下</strong><br>Follow-up：path可以从下到上然后从上到下<br></p>
+
+<p></p><h4>解题思路</h4><br><strong><em>本次的代码没有经过具体测试，仅作讨论用途-.-</em></strong><br>原题: 使用递归，每次都计算当前最长路径长度<br>Follow-up: 使用递归，每次递归的时候计算以当前结点为子树时的最长路径以及与父结点的连续路径。<br>&emsp;&emsp;&emsp;&emsp;&emsp;具体方法是在每个结点递归调用两次函数，计算左右子树的最长路径长度和连续路径长度，然后比较后返回以该结点为子树最长路径长度和连续路径长度<p></p>
+<p></p><h6><em>Python:</em></h6><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 原题</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">longestPath</span><span class="params">(self, root)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">		left = self.recursive(root.left, root.val, <span class="number">1</span>) <span class="comment"># 求左边子树的最大长度</span></span><br><span class="line">		right = self.recursive(root.right, root.val, <span class="number">1</span>) <span class="comment"># 求右边子树的最大长度</span></span><br><span class="line">		<span class="keyword">return</span> max(left, <span class="number">1</span>, right)</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(self, node, preVal, tempLength)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> node == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">		thisLength = tempLength + <span class="number">1</span> <span class="keyword">if</span> node.val == preVal + <span class="number">1</span> <span class="keyword">else</span> <span class="number">1</span> <span class="comment"># 如果该节点和父节点连续，则当前最大长度为父节点的最大长度+1，否则为1</span></span><br><span class="line">		left = self.recursive(node.left, node.val, thisLength) <span class="comment"># 找左子树最大长度</span></span><br><span class="line">		right = self.recursive(node.right, node.val, thisLength) <span class="comment"># 找右子树最大长度</span></span><br><span class="line">		<span class="keyword">return</span> max(left, thisLength, right) <span class="comment"># 返回当前节点以后的节点的最大路径长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Follow-up</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">longestPath</span><span class="params">(self, root)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">		left, Lbig, Lsmall= self.recursive(root.left, root.val) <span class="comment"># left代表左子树的最长路径长度, Lbig代表root节点左子树中比root大的连续路径长度, Lsmall代表root节点左子树中比root小的连续路径长度</span></span><br><span class="line">		right, Rbig, Rsmall = self.recursive(root.right, root.val) <span class="comment"># right代表右子树的最长路径长度, Rbig代表root节点右子树中比root大的连续路径长度, Rsmall代表root节点右子树中比root小的连续路径长度</span></span><br><span class="line">		thisLength = max(left, right, Lbig+<span class="number">1</span>+Rsmall, Rbig+<span class="number">1</span>+Lsmall) <span class="comment"># 以当前节点为根的子树的最长路径长度</span></span><br><span class="line">		<span class="keyword">return</span> thisLength</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(self, node, preVal)</span>:</span> <span class="comment"># 每次递归计算出以当前node为根的子树的最长路径长度</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">		left, Lbig, Lsmall = self.recursive(root.left, root.val)</span><br><span class="line">		right, Rbig, Rsmall = self.recursive(root.right, root.val)</span><br><span class="line">		thisLength = max(left, right, Lbig+<span class="number">1</span>+Rsmall, Rbig+<span class="number">1</span>+Lsmall)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> root.val == preVal + <span class="number">1</span>:</span><br><span class="line">			<span class="keyword">return</span> thisLength, max(Lbig, Rbig)+<span class="number">1</span>, <span class="number">0</span></span><br><span class="line">		<span class="keyword">elif</span> root.val == preVal - <span class="number">1</span>:</span><br><span class="line">			<span class="keyword">return</span> thisLength, <span class="number">0</span>, max(Lsmall, Rsmall)+<span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> thisLength, <span class="number">0</span>, <span class="number">0</span></span><br></pre></td></tr></table></figure><p></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/17/2_每日一题-二叉树最长连续路径/" data-id="cihurpvwr001gfy9tx4j26lae" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-1_每日一题-石之游戏" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/16/1_每日一题-石之游戏/" class="article-date">
@@ -118,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/16/1_每日一题-石之游戏/" data-id="cihtklfo3001j7e9tianbk31m" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/16/1_每日一题-石之游戏/" data-id="cihurpvwu001nfy9t7tssgqu5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
@@ -157,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cihtklfn1000b7e9tjkfnzi8u" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cihurpvvv000bfy9tzqikebd3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乱七八糟/">乱七八糟</a></li></ul>
@@ -182,7 +228,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -191,7 +237,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -200,7 +246,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 13.33px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 16.67px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 16.67px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -209,7 +255,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -219,6 +265,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
+          </li>
         
           <li>
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
@@ -234,10 +284,6 @@
         
           <li>
             <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
           </li>
         
       </ul>

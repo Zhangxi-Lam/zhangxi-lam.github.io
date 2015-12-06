@@ -86,6 +86,75 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-7-每日一刷-Count-of-Smaller-Numbers-After-Self" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/" class="article-date">
+  <time datetime="2015-12-06T16:46:51.000Z" itemprop="datePublished">2015-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Count of Smaller Numbers After Self)</p><br><strong>You are given an integer array nums and you have to return a new counts array.<br>The counts array has the property where counts[i] is the number of smaller elements to the right of nums[i].</strong><p></p>
+<p><strong>Example:</strong><br>Given nums = [5, 2, 6, 1]<br>Return the array [2, 1, 1, 0]</p>
+<p></p><h4>解题思路</h4><br>这题其实又是一个有关区间的题，每次都找当前值后面有多少个比它小的数。因此马上可以想到用线段树。<br>这道题其实就是值线段树的简单应用，线段树结点中存储一个区间内有多少个值，然后每次查询后修改线段树。<br>这题主要就是各种边界条件比较多，下次要注意。<p></p>
+<p><em>Python:</em><br>“””<br>时间复杂度 O(nlog(n))<br>“””<br>class SegmentTree(object):<br>    def <strong>init</strong>(self, d, nums, left, right):<br>        self.left, self.right = left, right<br>        self.val = 0<br>        self.mid = self.left + (self.right - self.left) / 2<br>        self.c1 = self.c2 = None<br>        if self.left == self.right:<br>            self.val = d[self.left]<br>        else:<br>            self.c1 = SegmentTree(d, nums, self.left, self.mid)<br>            self.c2 = SegmentTree(d, nums, self.mid+1, self.right)<br>            self.val = self.c1.val + self.c2.val</p>
+<pre><code>def <span class="function"><span class="title">query</span><span class="params">(self, right)</span></span>:
+    <span class="keyword">if</span> <span class="attribute">right</span> &lt; self<span class="class">.left</span>:
+        return <span class="number">0</span>
+    <span class="keyword">if</span> self<span class="class">.right</span> == self<span class="class">.left</span>:
+        return self<span class="class">.val</span>
+    <span class="keyword">if</span> self<span class="class">.right</span> == <span class="attribute">right</span>:
+        return self<span class="class">.val</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> <span class="attribute">right</span> &lt;= self<span class="class">.mid</span>:
+            return self<span class="class">.c1</span><span class="class">.query</span>(<span class="attribute">right</span>)
+        <span class="keyword">else</span>:
+            return self<span class="class">.c1</span><span class="class">.query</span>(self.mid) + self<span class="class">.c2</span><span class="class">.query</span>(<span class="attribute">right</span>)
+
+def <span class="function"><span class="title">modify</span><span class="params">(self, index)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.left</span> == self<span class="class">.right</span> and self<span class="class">.left</span> == index:
+        self<span class="class">.val</span> -= <span class="number">1</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> index &lt;= self<span class="class">.mid</span>:
+            self<span class="class">.c1</span><span class="class">.modify</span>(index)
+        <span class="keyword">else</span>:
+            self<span class="class">.c2</span><span class="class">.modify</span>(index)
+        self<span class="class">.val</span> = self<span class="class">.c1</span><span class="class">.val</span> + self<span class="class">.c2</span><span class="class">.val</span>
+</code></pre><p>class Solution(object):<br>    def countSmaller(self, nums):<br>        “””<br>        :type nums: List[int]<br>        :rtype: List[int]<br>        “””<br>        if nums == []:<br>            return []<br>        left, right = min(nums), max(nums)<br>        for i in xrange(len(nums)): # deal with numbers below zero.<br>            nums[i] -= left<br>        right -= left<br>        d = [0 for i in xrange(right+1)]<br>        for i in nums:<br>            d[i] += 1<br>        tree = SegmentTree(d, nums, 0, right) # build segment tree.<br>        res = []<br>        for i in nums:<br>            temp = tree.query(i-1)<br>            res.append(temp)<br>            tree.modify(i) # modify the tree after each query<br>        return res</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/" data-id="cihurpvvx000efy9t79jxt6pa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="pos-6-每日一刷-Range-Sum-Query-2D-Immutable" class="article article-type-pos" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="article-date">
@@ -121,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cihtklfn5000j7e9teqiv43g7" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cihurpvw6000nfy9tnorlm18m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -168,53 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cihtklfna000q7e9toouzjnfx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
-  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">2015-12-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Super Ugly Number)</p><br><strong>Write a program to find the nth super ugly number.<br>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br>For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</strong><p></p>
-<p><strong>Example:</strong><br>Given: primes = [2, 7, 13, 19], n = 10<br>Return 26</p>
-<p></p><h4>解题思路</h4><br>这题就是不断的选下一个最小的质数，因此可以想到用heap。<br>既然是一个Super Ugly的题，就用一个Super Ugly的做法吧- -<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> *</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthSuperUglyNumber</span><span class="params">(self, n, primes)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :type primes: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        length = len(primes)</span><br><span class="line">        idxs = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length) ]</span><br><span class="line">        minLists = []</span><br><span class="line">        h = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length):</span><br><span class="line">            heappush(h, [primes[i], i])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n):</span><br><span class="line">            tup = heappop(h) <span class="comment"># 第i-1大的数</span></span><br><span class="line">            num, index = tup[<span class="number">0</span>], tup[<span class="number">1</span>]  <span class="comment"># 第i-1大的数和index</span></span><br><span class="line">            minLists.append([num, index])</span><br><span class="line">            idx = idxs[index]</span><br><span class="line">            <span class="keyword">while</span> minLists[idx][<span class="number">1</span>] &gt; index:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">            nextNum = primes[index] * minLists[idx][<span class="number">0</span>]</span><br><span class="line">            idxs[index] = idx + <span class="number">1</span></span><br><span class="line">            heappush(h, [nextNum, index])</span><br><span class="line">        <span class="keyword">return</span> h[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cihtklfni000z7e9tmsjiatq3" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cihurpvwb000ufy9thb2c1yb3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -239,7 +262,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +271,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -257,7 +280,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 13.33px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 16.67px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 16.67px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -266,7 +289,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -276,6 +299,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
+          </li>
         
           <li>
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
@@ -291,10 +318,6 @@
         
           <li>
             <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
           </li>
         
       </ul>

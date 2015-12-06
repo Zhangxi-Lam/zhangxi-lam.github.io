@@ -86,6 +86,52 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
+  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Super Ugly Number)</p><br><strong>Write a program to find the nth super ugly number.<br>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br>For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</strong><p></p>
+<p><strong>Example:</strong><br>Given: primes = [2, 7, 13, 19], n = 10<br>Return 26</p>
+<p></p><h4>解题思路</h4><br>这题就是不断的选下一个最小的质数，因此可以想到用heap。<br>既然是一个Super Ugly的题，就用一个Super Ugly的做法吧- -<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> *</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthSuperUglyNumber</span><span class="params">(self, n, primes)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :type primes: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        length = len(primes)</span><br><span class="line">        idxs = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length) ]</span><br><span class="line">        minLists = []</span><br><span class="line">        h = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length):</span><br><span class="line">            heappush(h, [primes[i], i])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n):</span><br><span class="line">            tup = heappop(h) <span class="comment"># 第i-1大的数</span></span><br><span class="line">            num, index = tup[<span class="number">0</span>], tup[<span class="number">1</span>]  <span class="comment"># 第i-1大的数和index</span></span><br><span class="line">            minLists.append([num, index])</span><br><span class="line">            idx = idxs[index]</span><br><span class="line">            <span class="keyword">while</span> minLists[idx][<span class="number">1</span>] &gt; index:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">            nextNum = primes[index] * minLists[idx][<span class="number">0</span>]</span><br><span class="line">            idxs[index] = idx + <span class="number">1</span></span><br><span class="line">            heappush(h, [nextNum, index])</span><br><span class="line">        <span class="keyword">return</span> h[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cihurpvwh0013fy9tis47xc95" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-3_每日一刷-Range-Sum-Query-Mutable" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" class="article-date">
@@ -117,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" data-id="cihtklfnr00187e9t5nh9vwup" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" data-id="cihurpvwp001cfy9t5yd6ng9l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -161,54 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/01/2_每日一刷-Minimum_Height_Trees/" data-id="cihtklfo0001f7e9t6nitay4y" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1_每日一刷-Burst-Balloon" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/30/1_每日一刷-Burst-Balloon/" class="article-date">
-  <time datetime="2015-12-01T03:36:47.000Z" itemprop="datePublished">2015-11-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/30/1_每日一刷-Burst-Balloon/">每日一刷-Burst_Balloon</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Burst Balloon)</p><br><strong>Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] <em> nums[i] </em> nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.<br>Find the maximum coins you can collect by bursting the balloons wisely.</strong><p></p>
-<p><strong>Example:</strong><br>Given [3, 1, 5, 8]<br>Return 167</p>
-<p></p><h4>解题思路</h4><br>看到maximum coins, 发现是一道求最优解的题，马上想到使用动态规划<br>本题的最优子结构是opt[i~j] = opt[i~k-1] + score[k] + opt[k+1~j], 其中k指的是最后一个爆破的气球的位置<br>本题的trick在于在算最优子结构的时候要在两边多算一个位置。例如算opt[1,2]的时候要将0, 3都算进去<p></p>
-<p>代码虽然在leetcode上超时了，不过同样的做法使用JAVA和C++却可以通过，可能还是因为Python太慢了吧-.-</p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^3)</span><br><span class="line">"""</span></span><br><span class="line">prices = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxCoins</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        nums.insert(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        nums.append(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># table[i][j] stores the optimal result of bursting balloon starts at i and the length is j</span></span><br><span class="line">        <span class="comment"># balloon starts from 1 to n</span></span><br><span class="line">        table = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-I+<span class="number">1</span>)] <span class="keyword">for</span> I <span class="keyword">in</span> xrange(n+<span class="number">1</span>)]</span><br><span class="line">        table.insert(<span class="number">0</span>, []) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            table[i][<span class="number">1</span>] = nums[i-<span class="number">1</span>] * nums[i] * nums[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> xrange(<span class="number">2</span>, n+<span class="number">1</span>): <span class="comment"># length from 2 to n</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, n-l+<span class="number">2</span>): <span class="comment"># balloon can starts from balloon 1 to balloon n-l+1</span></span><br><span class="line">                maximum = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> xrange(j, j+l): <span class="comment"># balloon i is the last burst balloon</span></span><br><span class="line">                    <span class="keyword">if</span> i &lt; j+l-<span class="number">1</span>:</span><br><span class="line">                      temp = table[j][i-j] + table[i+<span class="number">1</span>][j+l-i-<span class="number">1</span>] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                      temp = table[j][i-j] + nums[i]*nums[j-<span class="number">1</span>]*nums[j+l]</span><br><span class="line">                    maximum = max(maximum, temp)</span><br><span class="line">                table[j][l] = maximum</span><br><span class="line">        <span class="keyword">return</span> table[<span class="number">1</span>][n]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/30/1_每日一刷-Burst-Balloon/" data-id="cihtklff700007e9t6svcj0sg" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/01/2_每日一刷-Minimum_Height_Trees/" data-id="cihurpvwt001jfy9tgjbordo7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -233,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -242,7 +241,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -251,7 +250,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 13.33px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 16.67px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 16.67px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -260,7 +259,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -270,6 +269,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
+          </li>
         
           <li>
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
@@ -285,10 +288,6 @@
         
           <li>
             <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
           </li>
         
       </ul>
