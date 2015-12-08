@@ -86,6 +86,109 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-线段树-SegmentationTree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/线段树-SegmentationTree/" class="article-date">
+  <time datetime="2015-11-28T21:42:18.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/28/线段树-SegmentationTree/">线段树-SegmentTree</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>线段树的优点:</strong><br>&emsp;&emsp;O(logn)时间内，在一段区间中求最大最小值</p>
+<p><strong>线段树的特征:</strong><br>  <li>二叉树</li><br>  <li>每个节点表示一个区间的最大值</li><br>  <li>左儿子 = 平分后左区间，右儿子 = 平分后右区间</li><br>  <li>不可增减节点(线段数结点总数需要在最开始就给定)</li><br>  <li>空间复杂度: O(n)</li></p>
+<p><strong>线段树的操作:</strong></p>
+<p>线段树的查询: O(logn)<br>  <li>查询的区间 和 线段树节点区间 相等 -&gt; 直接返回</li><br>  <li>查询的区间 被 线段树节点区间 包含-&gt; 递归向下搜索左右子树</li><br>  <li>查询的区间 和 线段树节点区间 不相交 -&gt; 结束</li><br>  <li>查询的区间 和 线段树节点区间 相交且不相等 -&gt; 分裂查询区间</li></p>
+<p>线段树的建立: O(n)<br>  <li>自上而下递归分裂</li><br>  <li>自下而上回溯更新</li></p>
+<p>线段树的更新: O(logn)<br>  <li>自上而下递归查询</li><br>  <li>自下而上回溯更新</li></p>
+<p><strong>问题特征:</strong></p>
+<li>对区间求sum</li><br><li>对区间求Max/Min</li><br><li>对区间求Count</li>
+
+<p><strong>构建形式</strong></p>
+<ol>
+<li>下标作为建立区间</li>
+<li>值作为建立区间</li>
+</ol>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentTree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nums, s=None, e=None)</span>:</span> <span class="comment"># build</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="keyword">if</span> s == <span class="keyword">None</span>:</span><br><span class="line">            self.start, self.end = <span class="number">0</span>, n-<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.start, self.end = s, e</span><br><span class="line">        self.mid = self.start + (self.end-self.start)/<span class="number">2</span></span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        self.val = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> self.end &lt; self.start:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> self.end == self.start:</span><br><span class="line">            self.val = nums[self.start]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.left = SegmentTree(nums, self.start, self.mid)</span><br><span class="line">            self.right = SegmentTree(nums, self.mid+<span class="number">1</span>, self.end)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span> <span class="comment"># modify</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type i: int</span><br><span class="line">        :type val: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> i == self.end:</span><br><span class="line">            self.val = val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> i &lt;= self.mid:</span><br><span class="line">                self.left.update(i, val)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.right.update(i, val)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRange</span><span class="params">(self, i, j)</span>:</span> <span class="comment"># query</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements nums[i..j], inclusive.</span><br><span class="line">        :type i: int</span><br><span class="line">        :type j: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> j == self.end: <span class="comment"># equal</span></span><br><span class="line">            <span class="keyword">return</span> self.val</span><br><span class="line">        <span class="keyword">elif</span> self.start &gt; j <span class="keyword">or</span> self.end &lt; i: <span class="comment"># not intersect</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># intersect</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; self.mid: <span class="comment"># all at the right sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.right.sumRange(i, j)</span><br><span class="line">            <span class="keyword">elif</span> j &lt;= self.mid: <span class="comment"># all at the left sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, j)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># some at the right &amp; some at the left</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, self.mid) + self.right.sumRange(self.mid+<span class="number">1</span>, j)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihwz0jd10007u39tx1asmk9s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/" class="article-date">
+  <time datetime="2015-11-28T05:22:27.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/">每日一题-Best_Time_to_Buy_and_Sell_Stock_with_Cooldown</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一题] (Best Time to Buy and Sell Stock with Cooldown)<br><strong>Say you have an array for which the ith element is the price of a given stock on day i.<br>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).<br>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</strong></p>
+<p></p><h4>解题思路</h4><br>本题使用动态规划，解题思路类似于抢劫问题。使用3个变量free, cool, have来存储当前位置的最优解。<br>free用来存储到当前位置，状态为空闲时的最优解<br>have用来存储到当前位置，状态为持有股票时的最优解<br>cool用来存储到当前位置，状态为正在冷却时的最优解<p></p>
+<p>状态转移矩阵为：<br>free = max(free, cool) # 当前free的最优解由上一时间free的最优解和cool的最优解得出<br>have = max(have, free-p) # 当前have的最优解由上一时间持有股票时的最优解和上一时间空闲而这一时间购买股票的最优解得出<br>cool = have + p #当前cool的最优解由上一时间持有股票的最优解再在这一时间卖出得出</p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n)</span><br><span class="line">"""</span></span><br><span class="line">prices = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    :type prices: List[int]</span><br><span class="line">    :rtype: int</span><br><span class="line">    """</span></span><br><span class="line">    free = <span class="number">0</span></span><br><span class="line">    have = cool = float(<span class="string">'-inf'</span>)</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> prices:</span><br><span class="line">        free, have, cool = max(free, cool), max(have, free-p), have+p</span><br><span class="line">    <span class="keyword">return</span> max(free, cool)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/6_每日一题-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown/" data-id="cihwz0jkk000pu39tedpjhv69" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-5_每日一题-A-B" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/23/5_每日一题-A-B/" class="article-date">
@@ -119,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/23/5_每日一题-A-B/" data-id="cihurslai000rkq9ttzth3ifc" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/23/5_每日一题-A-B/" data-id="cihwz0jkp000yu39t9u02fchy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
@@ -131,95 +234,9 @@
 
 
   
-    <article id="post-4_每日一题-字符串乘积" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/20/4_每日一题-字符串乘积/" class="article-date">
-  <time datetime="2015-11-21T02:49:19.000Z" itemprop="datePublished">2015-11-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/20/4_每日一题-字符串乘积/">每日一题-字符串乘积</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一题] (字符串乘积)<br><strong>Given a list of words, return the maximum numerical product value of two words length, where the two words don’t share any common letters.</strong><br>For this example, [cat, dog, day, space, telephone]<br>cat-&gt;3 and telephone-&gt;9, return 3X9=27<br><br></p><h4>解题思路</h4><br>这题暂时没什么好的思路，唯一想到可以优化的地方就是可以使用bit manipulation来判断字符是否重复。<br>可以使用32为二进制数来代表每个单词(假设26个字母), 判断字符是否重复时就直接与运算判断是否为0。<br>剩下的用Brute Force<br><br><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line">words = [<span class="string">"cat"</span>, <span class="string">"dog"</span>, <span class="string">"day"</span>, <span class="string">"space"</span>, <span class="string">"telephone"</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordMul</span><span class="params">(self, words)</span>:</span></span><br><span class="line">        n = len(words)</span><br><span class="line">        bit = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)] <span class="comment"># binary number for each word</span></span><br><span class="line">        wl = [len(words[i]) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)] <span class="comment"># length of each word</span></span><br><span class="line">        self.produceBit(words, bit, wl)</span><br><span class="line">        maximum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i, n):</span><br><span class="line">                <span class="keyword">if</span> bit[i] &amp; bit[j] == <span class="number">0</span>:</span><br><span class="line">                    maximum = max(maximum, wl[i] * wl[j])</span><br><span class="line">        <span class="keyword">return</span> maximum</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">produceBit</span><span class="params">(self, words, bit, wl)</span>:</span></span><br><span class="line">        alpha = <span class="string">"abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">        dict = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(alpha)):</span><br><span class="line">            dict[alpha[i]] = i </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(words)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(wl[i]):</span><br><span class="line">                d = dict[words[i][j]]</span><br><span class="line">                bit[i] = bit[i] | <span class="number">1</span> &lt;&lt; d</span><br></pre></td></tr></table></figure><br><br><p></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/20/4_每日一题-字符串乘积/" data-id="cihurslap000ykq9tprlks1j8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-3_每日一题-Trap-Water" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/19/3_每日一题-Trap-Water/" class="article-date">
-  <time datetime="2015-11-20T03:06:44.000Z" itemprop="datePublished">2015-11-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/19/3_每日一题-Trap-Water/">每日一题-Trap_Water</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一题] (Trapping Rain Water II)<br><strong>Trapping Rain Water II<br>Given n x m non-negative integers representing an elevation map 2d where the area of each cell is 1 x 1, compute how much water it is able to trap after raining.</strong><br>Example<br>Given 5*4 matrix<br><br>[12,13,0,12]<br>[13,4,13,12]<br>[13,8,10,12]<br>[12,13,12,12]<br>[13,13,13,13]<br>return 14.<br><br></p><h4>解题思路</h4><br>使用最小堆<br>1.对矩形的四周建堆<br>2.对于堆中每一元素，查探其四邻域中未查探的位置<br>3.如果h小于当前值，则更新水池容量，并将该位置加入堆中<br>4.如果h大于等于当前值，则直接加入堆中<br>最小堆中每次取的元素为当前水池中最短边的长度，如果每次寻找时发现了比最短边低的位置，则可以将水导入（更新水池容量），否则直接将该位置加入到水池中形成新的边缘<br><br><h6>笔记</h6><br>&emsp;&emsp;最小堆的题目的特征(不断找最小)，对Python中的最小堆的使用<br><br><h6><em>Python:</em></h6><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line">M = [[<span class="number">12</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">4</span>, <span class="number">13</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>], [<span class="number">12</span>, <span class="number">13</span>, <span class="number">12</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>]]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapWater</span><span class="params">(self, M)</span>:</span></span><br><span class="line">        heap = []</span><br><span class="line">        heapq.heapify(heap)</span><br><span class="line">        d = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (-<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line">        n = len(M)</span><br><span class="line">        m = len(M[<span class="number">0</span>])</span><br><span class="line">        visit = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(m)] <span class="keyword">for</span> I <span class="keyword">in</span> xrange(n)]</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">for</span> I <span class="keyword">in</span> xrange(m):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> I == <span class="number">0</span> <span class="keyword">or</span> i == n-<span class="number">1</span> <span class="keyword">or</span> I == m-<span class="number">1</span>:</span><br><span class="line">                    heapq.heappush(heap, (M[i][I], i, I))</span><br><span class="line">                    visit[i][I] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> heap != []:</span><br><span class="line">            this = heapq.heappop(heap)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">4</span>):</span><br><span class="line">                h = this[<span class="number">0</span>]</span><br><span class="line">                nr = this[<span class="number">1</span>] + d[i][<span class="number">0</span>]</span><br><span class="line">                nl = this[<span class="number">2</span>] + d[i][<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> nr &lt; <span class="number">0</span> <span class="keyword">or</span> nl &lt; <span class="number">0</span> <span class="keyword">or</span> nr &gt;= n <span class="keyword">or</span> nl &gt;= m:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> visit[nr][nl] == <span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                visit[nr][nl] = <span class="number">1</span></span><br><span class="line">                tmp = M[nr][nl]</span><br><span class="line">                <span class="keyword">if</span> tmp &lt; h:</span><br><span class="line">                    res += h - tmp</span><br><span class="line">                    tmp = h</span><br><span class="line">                heapq.heappush(heap, (tmp, nr, nl))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><br><br><p></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/19/3_每日一题-Trap-Water/" data-id="cihurslb50017kq9tlyz7jlnk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lintcode/">Lintcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -230,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -239,7 +256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -257,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -269,6 +286,14 @@
       <ul>
         
           <li>
+            <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
           </li>
         
@@ -278,14 +303,6 @@
         
           <li>
             <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
           </li>
         
       </ul>

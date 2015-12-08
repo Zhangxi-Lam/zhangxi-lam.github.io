@@ -86,6 +86,117 @@
         <div class="outer">
           <section id="main">
   
+    <article id="post-两个指针-TwoPointer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/08/两个指针-TwoPointer/" class="article-date">
+  <time datetime="2015-12-08T05:45:11.000Z" itemprop="datePublished">2015-12-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[两个指针] (Two Pointer)</p>
+
+<p>两个指针的题目主要分成三种情况：</p>
+<p></p><h2>a.对撞型</h2><p></p>
+<ol>
+<li><p>2Sum 类<br>例题: Trapping Water<br>一个指针i指向数组头，一个指针j指向数组尾。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> i != j:</span><br><span class="line">  <span class="keyword">if</span> num[i] &lt; num[j]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  <span class="keyword">elif</span> num[i] &gt; num[j]:</span><br><span class="line">    j -= <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Partition类<br>例题: 将一个数组分成两部分，一部分小与k，一部分大于k<br>一个指针i指向数组头，一个指针j指向数组尾。i表示在i之前的元素都小于k，j表示在j之后的元素都大于k。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> i != j:</span><br><span class="line">  <span class="keyword">while</span> num[i] &lt; k:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> num[j] &gt; k:</span><br><span class="line">    j -= <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> i &gt; j:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    swap(i, j)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>总结</strong><br>通过对撞型指针优化算法，根本上其实<strong>要证明不用扫描多余状态</strong></p>
+<p></p><h2>b.前向型</h2><p></p>
+<ol>
+<li><p>窗口类<br>例题: Minimum Window Substring<br>窗口类指针模板j</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">  <span class="keyword">while</span> j &lt; n: </span><br><span class="line">    <span class="keyword">if</span> 满足条件:</span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line">      更新状态</span><br><span class="line">    <span class="keyword">else</span> 不满足条件:</span><br><span class="line">      <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>快慢类<br>两个指针i, j的pace不同，可以用来探测一个链表是否有回路</p>
+</li>
+</ol>
+<p><strong>总结</strong><br>窗口类的问题根本上其实也是<strong>要证明不用扫描多余状态</strong><br>快慢类的问题感觉和经常见的烧蜡烛的那种智力题很像。或者是环绕一圈来找list有没有cycle。</p>
+<p></p><h2>c.两个数组，两个指针</h2><p></p>
+<ol>
+<li>并行<br>例题: Merge Two Sorted Array<br>单纯的是否两个指针</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/08/两个指针-TwoPointer/" data-id="cihwz0jkd000eu39ta5kjel59" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Method/">Method</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-并查集-UnionFind" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/07/并查集-UnionFind/" class="article-date">
+  <time datetime="2015-12-07T15:53:40.000Z" itemprop="datePublished">2015-12-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/07/并查集-UnionFind/" data-id="cihwz0jdf000bu39td3d30ejj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-7-每日一刷-Count-of-Smaller-Numbers-After-Self" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/" class="article-date">
@@ -120,101 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/" data-id="cihursla8000ekq9tvvg4pmg0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="pos-6-每日一刷-Range-Sum-Query-2D-Immutable" class="article article-type-pos" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="article-date">
-  <time datetime="2015-12-05T20:40:21.000Z" itemprop="datePublished">2015-12-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Range Sum Query 2D Immutable)</p><br><strong>Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</strong><p></p>
-<p><strong>Example:</strong><br>Given matrix = [<br>  [3, 0, 1, 4, 2],<br>  [5, 6, 3, 2, 1],<br>  [1, 2, 0, 1, 5],<br>  [4, 1, 0, 1, 7],<br>  [1, 0, 3, 0, 5]<br>]</p>
-<p>sumRegion(2, 1, 4, 3) -&gt; 8<br>sumRegion(1, 1, 2, 2) -&gt; 11<br>sumRegion(1, 2, 2, 4) -&gt; 12</p>
-<p></p><h4>解题思路</h4><br>这题思路和一维的时候一致，可以使用动态规划也可以使用线段树。就这题来说使用动态规划会简单很多。<br>思路就是用dp[i][j]表示从(0, 0)到(i, j)的和<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 Query O(1), Build O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type matrix: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> matrix == []:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        r = len(matrix)</span><br><span class="line">        c = len(matrix[<span class="number">0</span>])</span><br><span class="line">        self.dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(c+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(r+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, r+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, c+<span class="number">1</span>):</span><br><span class="line">                self.dp[i][j] = self.dp[i-<span class="number">1</span>][j] + self.dp[i][j-<span class="number">1</span>] - self.dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + matrix[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.</span><br><span class="line">        :type row1: int</span><br><span class="line">        :type col1: int</span><br><span class="line">        :type row2: int</span><br><span class="line">        :type col2: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.dp[row2+<span class="number">1</span>][col2+<span class="number">1</span>] - self.dp[row1][col2+<span class="number">1</span>] - self.dp[row2+<span class="number">1</span>][col1] + self.dp[row1][col1]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cihurslaf000nkq9ts59wr6zq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5-每日一刷-Additive-Number" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/04/5-每日一刷-Additive-Number/" class="article-date">
-  <time datetime="2015-12-04T18:02:13.000Z" itemprop="datePublished">2015-12-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p><p>[每日一刷] (Additive Number)</p><br>**Additive number is a string whose digits can form additive sequence.<br>A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.<br>For example:<p></p>
-<p>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.<br>1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8</p>
-<p>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br>1 + 99 = 100, 99 + 100 = 199**</p>
-<p></p><h4>解题思路</h4><br>这题个人感觉应该没什么trick，只能硬算了，整个数列其实都是由最开始的两个数决定的，而最开始的两个数只能<br>通过枚举的方法来尝试符不符合条件了。这题的关键就是要仔细了吧-.-<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditiveNumber</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type num: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        n = len(num)</span><br><span class="line">        s1 = <span class="number">0</span>  </span><br><span class="line">        len1, len2 = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> len1 &lt;= n/<span class="number">2</span>:</span><br><span class="line">            s2 = s1 + len1</span><br><span class="line">            len2 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> len2 &lt;= n/<span class="number">2</span>:</span><br><span class="line">                num1 = int(num[s1:s1+len1])</span><br><span class="line">                num2 = int(num[s2:s2+len2])</span><br><span class="line">                <span class="keyword">if</span> s2+len2 == n:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> self.isAdditive(num, num1, num2, s2+len2, n):</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">if</span> num[s2] == <span class="string">'0'</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                len2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num[s1] == <span class="string">'0'</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            len1 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditive</span><span class="params">(self, num, num1, num2, pos, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> pos == end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        target = num1 + num2</span><br><span class="line">        i = <span class="number">1</span> <span class="comment"># target位数</span></span><br><span class="line">        <span class="keyword">while</span> target / <span class="number">10</span>**i != <span class="number">0</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        num3 = int(num[pos:pos+i])</span><br><span class="line">        <span class="keyword">if</span> target == num3:</span><br><span class="line">            <span class="keyword">return</span> self.isAdditive(num, num2, num3, pos+i, end)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cihurslak000ukq9t8k71f9hg" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/" data-id="cihwz0jki000lu39tjrxeu2y1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -228,7 +245,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -239,7 +256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -257,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -266,7 +283,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -278,6 +295,14 @@
       <ul>
         
           <li>
+            <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
           </li>
         
@@ -287,14 +312,6 @@
         
           <li>
             <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
           </li>
         
       </ul>

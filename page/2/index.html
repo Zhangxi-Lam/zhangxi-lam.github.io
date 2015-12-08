@@ -86,6 +86,100 @@
         <div class="outer">
           <section id="main">
   
+    <article id="pos-6-每日一刷-Range-Sum-Query-2D-Immutable" class="article article-type-pos" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="article-date">
+  <time datetime="2015-12-05T20:40:21.000Z" itemprop="datePublished">2015-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Range Sum Query 2D Immutable)</p><br><strong>Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</strong><p></p>
+<p><strong>Example:</strong><br>Given matrix = [<br>  [3, 0, 1, 4, 2],<br>  [5, 6, 3, 2, 1],<br>  [1, 2, 0, 1, 5],<br>  [4, 1, 0, 1, 7],<br>  [1, 0, 3, 0, 5]<br>]</p>
+<p>sumRegion(2, 1, 4, 3) -&gt; 8<br>sumRegion(1, 1, 2, 2) -&gt; 11<br>sumRegion(1, 2, 2, 4) -&gt; 12</p>
+<p></p><h4>解题思路</h4><br>这题思路和一维的时候一致，可以使用动态规划也可以使用线段树。就这题来说使用动态规划会简单很多。<br>思路就是用dp[i][j]表示从(0, 0)到(i, j)的和<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 Query O(1), Build O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type matrix: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> matrix == []:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        r = len(matrix)</span><br><span class="line">        c = len(matrix[<span class="number">0</span>])</span><br><span class="line">        self.dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(c+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(r+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, r+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, c+<span class="number">1</span>):</span><br><span class="line">                self.dp[i][j] = self.dp[i-<span class="number">1</span>][j] + self.dp[i][j-<span class="number">1</span>] - self.dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + matrix[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.</span><br><span class="line">        :type row1: int</span><br><span class="line">        :type col1: int</span><br><span class="line">        :type row2: int</span><br><span class="line">        :type col2: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.dp[row2+<span class="number">1</span>][col2+<span class="number">1</span>] - self.dp[row1][col2+<span class="number">1</span>] - self.dp[row2+<span class="number">1</span>][col1] + self.dp[row1][col1]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cihwz0jkm000uu39t5hy3x4gd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-5-每日一刷-Additive-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/04/5-每日一刷-Additive-Number/" class="article-date">
+  <time datetime="2015-12-04T18:02:13.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Additive Number)</p><br>**Additive number is a string whose digits can form additive sequence.<br>A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.<br>For example:<p></p>
+<p>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.<br>1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8</p>
+<p>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br>1 + 99 = 100, 99 + 100 = 199**</p>
+<p></p><h4>解题思路</h4><br>这题个人感觉应该没什么trick，只能硬算了，整个数列其实都是由最开始的两个数决定的，而最开始的两个数只能<br>通过枚举的方法来尝试符不符合条件了。这题的关键就是要仔细了吧-.-<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditiveNumber</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type num: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        n = len(num)</span><br><span class="line">        s1 = <span class="number">0</span>  </span><br><span class="line">        len1, len2 = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> len1 &lt;= n/<span class="number">2</span>:</span><br><span class="line">            s2 = s1 + len1</span><br><span class="line">            len2 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> len2 &lt;= n/<span class="number">2</span>:</span><br><span class="line">                num1 = int(num[s1:s1+len1])</span><br><span class="line">                num2 = int(num[s2:s2+len2])</span><br><span class="line">                <span class="keyword">if</span> s2+len2 == n:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> self.isAdditive(num, num1, num2, s2+len2, n):</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">if</span> num[s2] == <span class="string">'0'</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                len2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num[s1] == <span class="string">'0'</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            len1 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditive</span><span class="params">(self, num, num1, num2, pos, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> pos == end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        target = num1 + num2</span><br><span class="line">        i = <span class="number">1</span> <span class="comment"># target位数</span></span><br><span class="line">        <span class="keyword">while</span> target / <span class="number">10</span>**i != <span class="number">0</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        num3 = int(num[pos:pos+i])</span><br><span class="line">        <span class="keyword">if</span> target == num3:</span><br><span class="line">            <span class="keyword">return</span> self.isAdditive(num, num2, num3, pos+i, end)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cihwz0jkr0011u39txqxn076m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
@@ -120,94 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cihurslau0013kq9ty9n2mhlz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-3_每日一刷-Range-Sum-Query-Mutable" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" class="article-date">
-  <time datetime="2015-12-02T17:11:51.000Z" itemprop="datePublished">2015-12-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一刷] (Range Sum Query Mutable)<br><strong>Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.<br>The update(i, val) function modifies nums by updating the element at index i to val.</strong><br><br>Example:<br>Given nums = [1, 3, 5]<br><br>sumRange(0, 2) -&gt; 9<br>update(1, 2)<br>sumRange(0, 2) -&gt; 8<br><br></p><h4>解题思路</h4><br>看到对区间的查找和修改，可以判断这是一道非常典型的线段树的问题，直接用线段树求解即可。<br><br>然而在实际操作中还是遇到了一点点问题，主要是对python的类不够熟悉。简单做个总结好了<br><br>1.python类的构造函数只能有一个，但可以通过默认参数实现多态<br>2.python类中的变量分为类变量和成员变量。<br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span><span class="params">(object)</span>:</span></span><br><span class="line">  val1 = <span class="number">100</span> <span class="comment"># 类变量，没有self，可以由类名直接调用，也可以由对象调用</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.val2 = <span class="number">200</span> <span class="comment"># 成员变量，可以由类的对象来调用，以self.的形式给出</span></span><br><span class="line">   </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">fcn</span><span class="params">(self,val = <span class="number">400</span>)</span>:</span></span><br><span class="line">    val3 = <span class="number">300</span> <span class="comment"># fcn函数内部的局部变量</span></span><br><span class="line">    self.val4 = val <span class="comment"># 不是成员变量，虽是以self.给出，但并没有在构造函数中初始化</span></span><br><span class="line">    self.val5 = <span class="number">500</span></span><br><span class="line"> <span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">  inst = TestClass()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行结果</span></span><br><span class="line"></span><br><span class="line">inst1 = TestClass()</span><br><span class="line">inst2 = TestClass()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> TestClass.val1 <span class="comment"># 100</span></span><br><span class="line"><span class="keyword">print</span> inst1.val1   <span class="comment"># 100</span></span><br><span class="line"> </span><br><span class="line">inst1.val1 = <span class="number">1000</span> </span><br><span class="line"><span class="keyword">print</span> inst1.val1   <span class="comment"># 1000</span></span><br><span class="line"><span class="keyword">print</span> TestClass.val1 <span class="comment"># 100</span></span><br><span class="line"> </span><br><span class="line">TestClass.val1 =<span class="number">2000</span></span><br><span class="line"><span class="keyword">print</span> inst1.val1   <span class="comment"># 1000</span></span><br><span class="line"><span class="keyword">print</span> TestClass.val1 <span class="comment"># 2000</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> inst2.val1   <span class="comment"># 2000   </span></span><br><span class="line"> </span><br><span class="line">inst3 = TestClass() </span><br><span class="line"><span class="keyword">print</span> inst3.val1   <span class="comment"># 2000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，</span></span><br><span class="line"><span class="comment"># 当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，</span></span><br><span class="line"><span class="comment"># 因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身拥有的类变量的值。</span></span><br></pre></td></tr></table></figure><br><br><p></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" data-id="cihurslb8001ckq9tnmzcilnw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2_每日一刷-Minimum_Height_Trees" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/" class="article-date">
-  <time datetime="2015-12-01T20:13:41.000Z" itemprop="datePublished">2015-12-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/01/2_每日一刷-Minimum_Height_Trees/">每日一刷-Minimum_Height_Trees</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[每日一刷] (Minimum Height Trees)<br><strong>For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.</strong><br><br><strong>Example:</strong><br>Given n = 4, edges = [[1, 0], [1, 2], [1, 3]]<br>&emsp;&emsp;0<br>&emsp;&emsp;|<br>&emsp;&emsp;1<br>&emsp;&emsp;/ \<br>&emsp;&emsp;2   3<br>return [1]<br><br></p><h4>解题思路</h4><br>本题个人的思路比较麻烦：首先对点0使用DFS，然后判断要求的点会在0点的哪个方向，然后再向那个方向移动<br>每次移动的时候都会有一部分的点的高度下降，而一部分的点的高度上升<br>代码稍微复杂了点，晚些时候再看看别人的思路好了-.-<br><br><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n)</span><br><span class="line">"""</span></span><br><span class="line">n = <span class="number">11</span></span><br><span class="line">edges = [[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">5</span>],[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">3</span>,<span class="number">7</span>],[<span class="number">6</span>,<span class="number">8</span>],[<span class="number">8</span>,<span class="number">9</span>],[<span class="number">9</span>,<span class="number">10</span>]]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMinHeightTrees</span><span class="params">(self, n, edges)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :type edges: List[List[int]]</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">0</span>]</span><br><span class="line">        d = &#123;&#125; <span class="comment"># 存储相邻的点</span></span><br><span class="line">        s = &#123;&#125; <span class="comment"># 判断点是否访问过</span></span><br><span class="line">        h = &#123;&#125; <span class="comment"># 存储点之后的长度</span></span><br><span class="line">        res = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> e <span class="keyword">in</span> edges:</span><br><span class="line">            v1, v2 = e[<span class="number">0</span>], e[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> d.get(v1, -<span class="number">1</span>) == -<span class="number">1</span>:</span><br><span class="line">                d[v1] = []</span><br><span class="line">            d[v1].append(v2)</span><br><span class="line">            <span class="keyword">if</span> d.get(v2, -<span class="number">1</span>) == -<span class="number">1</span>:</span><br><span class="line">                d[v2] = []</span><br><span class="line">            d[v2].append(v1)</span><br><span class="line">            s[v1] = s[v2] = -<span class="number">1</span></span><br><span class="line">        s[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        self.DFS(<span class="number">0</span>, d, s, h)</span><br><span class="line">        s[<span class="number">0</span>] = -<span class="number">1</span></span><br><span class="line">        res = self.getMin(<span class="number">0</span>, d, h, s, <span class="number">0</span>, h[<span class="number">0</span>]-<span class="number">1</span>, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self, n, d, s, h)</span>:</span></span><br><span class="line">        m = <span class="number">1</span> </span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> d[n]:</span><br><span class="line">            <span class="keyword">if</span> s[v] != <span class="number">1</span>:</span><br><span class="line">                s[v] = <span class="number">1</span></span><br><span class="line">                m = max(m, self.DFS(v, d, s, h)+<span class="number">1</span>)</span><br><span class="line">        h[n] = m</span><br><span class="line">        <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self, n, d, h, s, min, height, res)</span>:</span></span><br><span class="line">        max1 = <span class="number">0</span> <span class="comment"># 高度减少的部分</span></span><br><span class="line">        max2 = <span class="number">0</span> <span class="comment"># 高度增加的部分</span></span><br><span class="line">        i = -<span class="number">1</span> <span class="comment"># 下一个移动的点</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> d[n]:</span><br><span class="line">            <span class="keyword">if</span> s[v] != -<span class="number">1</span>:</span><br><span class="line">                s[v] = -<span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> h[v] &gt; max1:</span><br><span class="line">                    max2 = max1</span><br><span class="line">                    max1 = h[v]</span><br><span class="line">                    i = v</span><br><span class="line">                <span class="keyword">elif</span> h[v] &gt; max2:</span><br><span class="line">                    max2 = h[v]</span><br><span class="line">        max2 = max(min, max2) <span class="comment"># 会增加的最大高度</span></span><br><span class="line">        <span class="keyword">if</span> i == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        temp = max(max1-<span class="number">1</span>, max2+<span class="number">1</span>) <span class="comment"># 移动之后的高度</span></span><br><span class="line">        <span class="keyword">if</span> temp &gt; height:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">elif</span> temp == height:</span><br><span class="line">            res.append(i)</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># 更新res</span></span><br><span class="line">            res = []</span><br><span class="line">            res.append(i)</span><br><span class="line">            height = temp</span><br><span class="line">        res = self.getMin(i, d, h, s, max2+<span class="number">1</span>, height, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><br><br><p></p>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/01/2_每日一刷-Minimum_Height_Trees/" data-id="cihurslbd001jkq9ty8vw2hgb" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cihwz0jkw001au39t5vr3dj8x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -221,7 +228,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -232,7 +239,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -241,7 +248,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -250,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -259,7 +266,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -271,6 +278,14 @@
       <ul>
         
           <li>
+            <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
           </li>
         
@@ -280,14 +295,6 @@
         
           <li>
             <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
           </li>
         
       </ul>

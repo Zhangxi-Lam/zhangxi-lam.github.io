@@ -3,17 +3,35 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello world | Zhangxi-Lam的博客</title>
+  <title>两个指针-TwoPointer | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……&amp;emsp;&amp;emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧">
+  <meta name="description" content="[两个指针] (Two Pointer)
+
+两个指针的题目主要分成三种情况：
+a.对撞型
+
+2Sum 类例题: Trapping Water一个指针i指向数组头，一个指针j指向数组尾。
+1234567while i != j:  if num[i] &amp;lt; num[j]:    i += 1  elif num[i] &amp;gt; num[j]:    j -= 1  else:    i += 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello world">
-<meta property="og:url" content="http://zhangxi-lam.github.io/2015/11/15/Hello-world/index.html">
+<meta property="og:title" content="两个指针-TwoPointer">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2015/12/08/两个指针-TwoPointer/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……&amp;emsp;&amp;emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧">
+<meta property="og:description" content="[两个指针] (Two Pointer)
+
+两个指针的题目主要分成三种情况：
+a.对撞型
+
+2Sum 类例题: Trapping Water一个指针i指向数组头，一个指针j指向数组尾。
+1234567while i != j:  if num[i] &amp;lt; num[j]:    i += 1  elif num[i] &amp;gt; num[j]:    j -= 1  else:    i += 1">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello world">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……&amp;emsp;&amp;emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧">
+<meta name="twitter:title" content="两个指针-TwoPointer">
+<meta name="twitter:description" content="[两个指针] (Two Pointer)
+
+两个指针的题目主要分成三种情况：
+a.对撞型
+
+2Sum 类例题: Trapping Water一个指针i指向数组头，一个指针j指向数组尾。
+1234567while i != j:  if num[i] &amp;lt; num[j]:    i += 1  elif num[i] &amp;gt; num[j]:    j -= 1  else:    i += 1">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -84,12 +102,16 @@
 </header>
 
         <div class="outer">
-          <section id="main"><article id="post-Hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main"><article id="post-两个指针-TwoPointer" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/15/Hello-world/" class="article-date">
-  <time datetime="2015-11-16T03:35:17.000Z" itemprop="datePublished">2015-11-15</time>
+    <a href="/2015/12/08/两个指针-TwoPointer/" class="article-date">
+  <time datetime="2015-12-08T05:45:11.000Z" itemprop="datePublished">2015-12-08</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -98,7 +120,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello world
+      两个指针-TwoPointer
     </h1>
   
 
@@ -106,15 +128,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……<br><br>&emsp;&emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧！<br><br>&emsp;&emsp;Markdown用得还不习惯，第一篇博客就到这里了吧。</p><br><p>&emsp;&emsp;总之希望大家可以多捧场啦:)</p>
+        <p>[两个指针] (Two Pointer)</p>
+
+<p>两个指针的题目主要分成三种情况：</p>
+<p></p><h2>a.对撞型</h2><p></p>
+<ol>
+<li><p>2Sum 类<br>例题: Trapping Water<br>一个指针i指向数组头，一个指针j指向数组尾。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> i != j:</span><br><span class="line">  <span class="keyword">if</span> num[i] &lt; num[j]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  <span class="keyword">elif</span> num[i] &gt; num[j]:</span><br><span class="line">    j -= <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Partition类<br>例题: 将一个数组分成两部分，一部分小与k，一部分大于k<br>一个指针i指向数组头，一个指针j指向数组尾。i表示在i之前的元素都小于k，j表示在j之后的元素都大于k。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> i != j:</span><br><span class="line">  <span class="keyword">while</span> num[i] &lt; k:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> num[j] &gt; k:</span><br><span class="line">    j -= <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> i &gt; j:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    swap(i, j)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>总结</strong><br>通过对撞型指针优化算法，根本上其实<strong>要证明不用扫描多余状态</strong></p>
+<p></p><h2>b.前向型</h2><p></p>
+<ol>
+<li><p>窗口类<br>例题: Minimum Window Substring<br>窗口类指针模板j</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">  <span class="keyword">while</span> j &lt; n: </span><br><span class="line">    <span class="keyword">if</span> 满足条件:</span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line">      更新状态</span><br><span class="line">    <span class="keyword">else</span> 不满足条件:</span><br><span class="line">      <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>快慢类<br>两个指针i, j的pace不同，可以用来探测一个链表是否有回路</p>
+</li>
+</ol>
+<p><strong>总结</strong><br>窗口类的问题根本上其实也是<strong>要证明不用扫描多余状态</strong><br>快慢类的问题感觉和经常见的烧蜡烛的那种智力题很像。或者是环绕一圈来找list有没有cycle。</p>
+<p></p><h2>c.两个数组，两个指针</h2><p></p>
+<ol>
+<li>并行<br>例题: Merge Two Sorted Array<br>单纯的是否两个指针</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cihwz0jkg000iu39tefnawnwm" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/08/两个指针-TwoPointer/" data-id="cihwz0jkd000eu39ta5kjel59" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乱七八糟/">乱七八糟</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Method/">Method</a></li></ul>
 
     </footer>
   </div>
@@ -122,15 +169,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/11/16/1_每日一题-石之游戏/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          每日一题-石之游戏
-        
-      </div>
-    </a>
   
+    <a href="/2015/12/07/并查集-UnionFind/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">并查集-UnionFind</div>
+    </a>
   
 </nav>
 

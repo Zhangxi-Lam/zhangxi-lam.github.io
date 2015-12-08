@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>线段树-SegmentationTree | Zhangxi-Lam的博客</title>
+  <title>线段树-SegmentTree | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
 线段树的特征:  二叉树  每个节点表示一个区间的最大值  左儿子 = 平分后左区间，右儿子 = 平分后右区间  不可增减节点(线段数结点总数需要在最开始就给定)  空间复杂度: O(n)
 线段树的操作:
 线段树的查询: O(logn)  查询的区间 和 线段树节点区间 相等 -&amp;gt; 直接返回  查询的区间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线段树-SegmentationTree">
+<meta property="og:title" content="线段树-SegmentTree">
 <meta property="og:url" content="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
 <meta property="og:description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
@@ -18,7 +18,7 @@
 线段树的操作:
 线段树的查询: O(logn)  查询的区间 和 线段树节点区间 相等 -&amp;gt; 直接返回  查询的区间">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线段树-SegmentationTree">
+<meta name="twitter:title" content="线段树-SegmentTree">
 <meta name="twitter:description" content="线段树的优点:&amp;emsp;&amp;emsp;O(logn)时间内，在一段区间中求最大最小值
 线段树的特征:  二叉树  每个节点表示一个区间的最大值  左儿子 = 平分后左区间，右儿子 = 平分后右区间  不可增减节点(线段数结点总数需要在最开始就给定)  空间复杂度: O(n)
 线段树的操作:
@@ -111,7 +111,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      线段树-SegmentationTree
+      线段树-SegmentTree
     </h1>
   
 
@@ -133,12 +133,12 @@
 <li>下标作为建立区间</li>
 <li>值作为建立区间</li>
 </ol>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentationTree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nums, s=None, e=None)</span>:</span> <span class="comment"># build</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="keyword">if</span> s == <span class="keyword">None</span>:</span><br><span class="line">            self.start, self.end = <span class="number">0</span>, n-<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.start, self.end = s, e</span><br><span class="line">        self.mid = self.start + (self.end-self.start)/<span class="number">2</span></span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        self.val = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> self.end &lt; self.start:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> self.end == self.start:</span><br><span class="line">            self.val = nums[self.start]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.left = SegmentationTree(nums, self.start, self.mid)</span><br><span class="line">            self.right = SegmentationTree(nums, self.mid+<span class="number">1</span>, self.end)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span> <span class="comment"># modify</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type i: int</span><br><span class="line">        :type val: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> i == self.end:</span><br><span class="line">            self.val = val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> i &lt;= self.mid:</span><br><span class="line">                self.left.update(i, val)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.right.update(i, val)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRange</span><span class="params">(self, i, j)</span>:</span> <span class="comment"># query</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements nums[i..j], inclusive.</span><br><span class="line">        :type i: int</span><br><span class="line">        :type j: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> j == self.end: <span class="comment"># equal</span></span><br><span class="line">            <span class="keyword">return</span> self.val</span><br><span class="line">        <span class="keyword">elif</span> self.start &gt; j <span class="keyword">or</span> self.end &lt; i: <span class="comment"># not intersect</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># intersect</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; self.mid: <span class="comment"># all at the right sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.right.sumRange(i, j)</span><br><span class="line">            <span class="keyword">elif</span> j &lt;= self.mid: <span class="comment"># all at the left sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, j)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># some at the right &amp; some at the left</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, self.mid) + self.right.sumRange(self.mid+<span class="number">1</span>, j)</span><br></pre></td></tr></table></figure></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentTree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nums, s=None, e=None)</span>:</span> <span class="comment"># build</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="keyword">if</span> s == <span class="keyword">None</span>:</span><br><span class="line">            self.start, self.end = <span class="number">0</span>, n-<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.start, self.end = s, e</span><br><span class="line">        self.mid = self.start + (self.end-self.start)/<span class="number">2</span></span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        self.val = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> self.end &lt; self.start:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> self.end == self.start:</span><br><span class="line">            self.val = nums[self.start]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.left = SegmentTree(nums, self.start, self.mid)</span><br><span class="line">            self.right = SegmentTree(nums, self.mid+<span class="number">1</span>, self.end)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span> <span class="comment"># modify</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type i: int</span><br><span class="line">        :type val: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> i == self.end:</span><br><span class="line">            self.val = val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> i &lt;= self.mid:</span><br><span class="line">                self.left.update(i, val)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.right.update(i, val)</span><br><span class="line">            self.val = self.left.val + self.right.val</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRange</span><span class="params">(self, i, j)</span>:</span> <span class="comment"># query</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        sum of elements nums[i..j], inclusive.</span><br><span class="line">        :type i: int</span><br><span class="line">        :type j: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> i == self.start <span class="keyword">and</span> j == self.end: <span class="comment"># equal</span></span><br><span class="line">            <span class="keyword">return</span> self.val</span><br><span class="line">        <span class="keyword">elif</span> self.start &gt; j <span class="keyword">or</span> self.end &lt; i: <span class="comment"># not intersect</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># intersect</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; self.mid: <span class="comment"># all at the right sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.right.sumRange(i, j)</span><br><span class="line">            <span class="keyword">elif</span> j &lt;= self.mid: <span class="comment"># all at the left sub tree</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, j)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># some at the right &amp; some at the left</span></span><br><span class="line">                <span class="keyword">return</span> self.left.sumRange(i, self.mid) + self.right.sumRange(self.mid+<span class="number">1</span>, j)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihursl9z0007kq9tikrkg996" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/28/线段树-SegmentationTree/" data-id="cihwz0jd10007u39tx1asmk9s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
@@ -177,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">14</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -186,7 +186,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -195,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -204,7 +204,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -216,6 +216,14 @@
       <ul>
         
           <li>
+            <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/06/7-每日一刷-Count-of-Smaller-Numbers-After-Self/">每日一刷-Count of Smaller Numbers After Self</a>
           </li>
         
@@ -225,14 +233,6 @@
         
           <li>
             <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/">3_每日一刷-Range_Sum_Query_Mutable</a>
           </li>
         
       </ul>
