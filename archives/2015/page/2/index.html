@@ -5,15 +5,12 @@
   
   <title>Archives: 2015 | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Zhangxi-Lam的博客">
 <meta property="og:url" content="http://zhangxi-lam.github.io/archives/2015/page/2/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -21,7 +18,7 @@
     <link rel="icon" href="/css/images/favicon.ico">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -50,7 +47,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://zhangxi-lam.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhangxi-lam.github.io"></form>
       </div>
     </div>
   </div>
@@ -75,7 +72,7 @@
         <span class="icon"></span>
         Follow
       </a>
-      <a href="mailto:zl1422@nyu.edu" class="btn email">
+      <a href="mailto:jesse.linzx@gmail.com" class="btn email">
         <span class="icon"></span>
         Email
       </a>
@@ -86,74 +83,150 @@
         <div class="outer">
           <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-pos">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="archive-article-date">
-  <time datetime="2015-12-05T20:40:21.000Z" itemprop="datePublished">Dec 5</time>
+    <article id="pos-6-每日一刷-Range-Sum-Query-2D-Immutable" class="article article-type-pos" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" class="article-date">
+  <time datetime="2015-12-05T20:40:21.000Z" itemprop="datePublished">2015-12-05</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
+      <a class="article-title" href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/04/5-每日一刷-Additive-Number/" class="archive-article-date">
-  <time datetime="2015-12-04T18:02:13.000Z" itemprop="datePublished">Dec 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
+        <p></p><p>[每日一刷] (Range Sum Query 2D Immutable)</p><br><strong>Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).</strong><p></p>
+<p><strong>Example:</strong><br>Given matrix = [<br>  [3, 0, 1, 4, 2],<br>  [5, 6, 3, 2, 1],<br>  [1, 2, 0, 1, 5],<br>  [4, 1, 0, 1, 7],<br>  [1, 0, 3, 0, 5]<br>]</p>
+<p>sumRegion(2, 1, 4, 3) -&gt; 8<br>sumRegion(1, 1, 2, 2) -&gt; 11<br>sumRegion(1, 2, 2, 4) -&gt; 12</p>
+<p></p><h4>解题思路</h4><br>这题思路和一维的时候一致，可以使用动态规划也可以使用线段树。就这题来说使用动态规划会简单很多。<br>思路就是用dp[i][j]表示从(0, 0)到(i, j)的和<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">时间复杂度 Query O(1), Build O(n^2)</div><div class="line">"""</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumMatrix</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, matrix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        initialize your data structure here.</div><div class="line">        :type matrix: List[List[int]]</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> matrix == []:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        r = len(matrix)</div><div class="line">        c = len(matrix[<span class="number">0</span>])</div><div class="line">        self.dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(c+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(r+<span class="number">1</span>)]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, r+<span class="number">1</span>):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, c+<span class="number">1</span>):</div><div class="line">                self.dp[i][j] = self.dp[i<span class="number">-1</span>][j] + self.dp[i][j<span class="number">-1</span>] - self.dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + matrix[i<span class="number">-1</span>][j<span class="number">-1</span>]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumRegion</span><span class="params">(self, row1, col1, row2, col2)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.</div><div class="line">        :type row1: int</div><div class="line">        :type col1: int</div><div class="line">        :type row2: int</div><div class="line">        :type col2: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">return</span> self.dp[row2+<span class="number">1</span>][col2+<span class="number">1</span>] - self.dp[row1][col2+<span class="number">1</span>] - self.dp[row2+<span class="number">1</span>][col1] + self.dp[row1][col1]</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/" data-id="cj0iwfopq000pvg9gxekibhyj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-5-每日一刷-Additive-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/04/5-每日一刷-Additive-Number/" class="article-date">
+  <time datetime="2015-12-04T18:02:13.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
+      <a class="article-title" href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="archive-article-date">
-  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">Dec 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
+        <p></p><p>[每日一刷] (Additive Number)</p><br>**Additive number is a string whose digits can form additive sequence.<br>A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.<br>For example:<p></p>
+<p>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.<br>1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8</p>
+<p>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br>1 + 99 = 100, 99 + 100 = 199**</p>
+<p></p><h4>解题思路</h4><br>这题个人感觉应该没什么trick，只能硬算了，整个数列其实都是由最开始的两个数决定的，而最开始的两个数只能<br>通过枚举的方法来尝试符不符合条件了。这题的关键就是要仔细了吧-.-<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">时间复杂度 O(n^2)</div><div class="line">"""</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditiveNumber</span><span class="params">(self, num)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type num: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        n = len(num)</div><div class="line">        s1 = <span class="number">0</span>  </div><div class="line">        len1, len2 = <span class="number">1</span>, <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> len1 &lt;= n/<span class="number">2</span>:</div><div class="line">            s2 = s1 + len1</div><div class="line">            len2 = <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> len2 &lt;= n/<span class="number">2</span>:</div><div class="line">                num1 = int(num[s1:s1+len1])</div><div class="line">                num2 = int(num[s2:s2+len2])</div><div class="line">                <span class="keyword">if</span> s2+len2 == n:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="keyword">if</span> self.isAdditive(num, num1, num2, s2+len2, n):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">                <span class="keyword">if</span> num[s2] == <span class="string">'0'</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                len2 += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> num[s1] == <span class="string">'0'</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            len1 += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditive</span><span class="params">(self, num, num1, num2, pos, end)</span>:</span></div><div class="line">        <span class="keyword">if</span> pos == end:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        target = num1 + num2</div><div class="line">        i = <span class="number">1</span> <span class="comment"># target位数</span></div><div class="line">        <span class="keyword">while</span> target / <span class="number">10</span>**i != <span class="number">0</span>:</div><div class="line">            i += <span class="number">1</span></div><div class="line">        num3 = int(num[pos:pos+i])</div><div class="line">        <span class="keyword">if</span> target == num3:</div><div class="line">            <span class="keyword">return</span> self.isAdditive(num, num2, num3, pos+i, end)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cj0iwfopn000ivg9ghzdr9qnr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
+  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
+      <a class="article-title" href="/2015/12/04/4_每日一刷-Super-Ugly-Number/">每日一刷-Super-Ugly-Number</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p>[每日一刷] (Super Ugly Number)</p><br><strong>Write a program to find the nth super ugly number.<br>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br>For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</strong><p></p>
+<p><strong>Example:</strong><br>Given: primes = [2, 7, 13, 19], n = 10<br>Return 26</p>
+<p></p><h4>解题思路</h4><br>这题就是不断的选下一个最小的质数，因此可以想到用heap。<br>既然是一个Super Ugly的题，就用一个Super Ugly的做法吧- -<p></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> *</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthSuperUglyNumber</span><span class="params">(self, n, primes)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :type primes: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        length = len(primes)</div><div class="line">        idxs = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length) ]</div><div class="line">        minLists = []</div><div class="line">        h = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length):</div><div class="line">            heappush(h, [primes[i], i])</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n):</div><div class="line">            tup = heappop(h) <span class="comment"># 第i-1大的数</span></div><div class="line">            num, index = tup[<span class="number">0</span>], tup[<span class="number">1</span>]  <span class="comment"># 第i-1大的数和index</span></div><div class="line">            minLists.append([num, index])</div><div class="line">            idx = idxs[index]</div><div class="line">            <span class="keyword">while</span> minLists[idx][<span class="number">1</span>] &gt; index:</div><div class="line">                idx += <span class="number">1</span></div><div class="line">            nextNum = primes[index] * minLists[idx][<span class="number">0</span>]</div><div class="line">            idxs[index] = idx + <span class="number">1</span></div><div class="line">            heappush(h, [nextNum, index])</div><div class="line">        <span class="keyword">return</span> h[<span class="number">0</span>][<span class="number">0</span>]</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cj0iwfopj000bvg9g4gphpt4g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+
+    </footer>
   </div>
+  
 </article>
+
+
   
   
-    </div></section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2015/">&laquo; Prev</a><a class="page-number" href="/archives/2015/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2015/page/3/">3</a><a class="page-number" href="/archives/2015/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/6/">6</a><a class="extend next" rel="next" href="/archives/2015/page/3/">Next &raquo;</a>
+    </nav>
   
 </section>
           
@@ -163,7 +236,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/乱七八糟/">乱七八糟</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -172,7 +245,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -181,7 +254,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a> <a href="/tags/Google/" style="font-size: 12.5px;">Google</a> <a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a> <a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a> <a href="/tags/Method/" style="font-size: 10px;">Method</a> <a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a> <a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -190,7 +263,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -200,6 +273,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/20/四年后/">四年后</a>
+          </li>
         
           <li>
             <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
@@ -217,10 +294,6 @@
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
           </li>
         
-          <li>
-            <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -234,7 +307,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Zhangxi-Lam<br>
+      &copy; 2017 Zhangxi-Lam<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -252,11 +325,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

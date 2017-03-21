@@ -5,15 +5,12 @@
   
   <title>Tag: Method | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Zhangxi-Lam的博客">
 <meta property="og:url" content="http://zhangxi-lam.github.io/tags/Method/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zhangxi-Lam的博客">
-<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -21,7 +18,7 @@
     <link rel="icon" href="/css/images/favicon.ico">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -50,7 +47,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://zhangxi-lam.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhangxi-lam.github.io"></form>
       </div>
     </div>
   </div>
@@ -75,7 +72,7 @@
         <span class="icon"></span>
         Follow
       </a>
-      <a href="mailto:zl1422@nyu.edu" class="btn email">
+      <a href="mailto:jesse.linzx@gmail.com" class="btn email">
         <span class="icon"></span>
         Email
       </a>
@@ -86,36 +83,74 @@
         <div class="outer">
           <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/08/两个指针-TwoPointer/" class="archive-article-date">
-  <time datetime="2015-12-08T05:45:11.000Z" itemprop="datePublished">Dec 8</time>
+    <article id="post-两个指针-TwoPointer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/08/两个指针-TwoPointer/" class="article-date">
+  <time datetime="2015-12-08T05:45:11.000Z" itemprop="datePublished">2015-12-08</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
+      <a class="article-title" href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[两个指针] (Two Pointer)</p>
+
+<p>两个指针的题目主要分成三种情况：</p>
+<p></p><h2>a.对撞型</h2><p></p>
+<ol>
+<li><p>2Sum 类<br>例题: Trapping Water<br>一个指针i指向数组头，一个指针j指向数组尾。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> i != j:</div><div class="line">  <span class="keyword">if</span> num[i] &lt; num[j]:</div><div class="line">    i += <span class="number">1</span></div><div class="line">  <span class="keyword">elif</span> num[i] &gt; num[j]:</div><div class="line">    j -= <span class="number">1</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    i += <span class="number">1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Partition类<br>例题: 将一个数组分成两部分，一部分小与k，一部分大于k<br>一个指针i指向数组头，一个指针j指向数组尾。i表示在i之前的元素都小于k，j表示在j之后的元素都大于k。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> i != j:</div><div class="line">  <span class="keyword">while</span> num[i] &lt; k:</div><div class="line">    i += <span class="number">1</span></div><div class="line">  <span class="keyword">while</span> num[j] &gt; k:</div><div class="line">    j -= <span class="number">1</span></div><div class="line">  <span class="keyword">if</span> i &gt; j:</div><div class="line">    <span class="keyword">break</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    swap(i, j)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>总结</strong><br>通过对撞型指针优化算法，根本上其实<strong>要证明不用扫描多余状态</strong></p>
+<p></p><h2>b.前向型</h2><p></p>
+<ol>
+<li><p>窗口类<br>例题: Minimum Window Substring<br>窗口类指针模板j</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">j = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</div><div class="line">  <span class="keyword">while</span> j &lt; n: </div><div class="line">    <span class="keyword">if</span> 满足条件:</div><div class="line">      j += <span class="number">1</span></div><div class="line">      更新状态</div><div class="line">    <span class="keyword">else</span> 不满足条件:</div><div class="line">      <span class="keyword">break</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>快慢类<br>两个指针i, j的pace不同，可以用来探测一个链表是否有回路</p>
+</li>
+</ol>
+<p><strong>总结</strong><br>窗口类的问题根本上其实也是<strong>要证明不用扫描多余状态</strong><br>快慢类的问题感觉和经常见的烧蜡烛的那种智力题很像。或者是环绕一圈来找list有没有cycle。</p>
+<p></p><h2>c.两个数组，两个指针</h2><p></p>
+<ol>
+<li>并行<br>例题: Merge Two Sorted Array<br>单纯的是否两个指针</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhangxi-lam.github.io/2015/12/08/两个指针-TwoPointer/" data-id="cj0iwfopx0010vg9gyknbotpk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Method/">Method</a></li></ul>
+
+    </footer>
   </div>
+  
 </article>
+
+
   
-  
-    </div></section>
   
 </section>
           
@@ -125,7 +160,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/乱七八糟/">乱七八糟</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -134,7 +169,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -143,7 +178,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a> <a href="/tags/Google/" style="font-size: 12.5px;">Google</a> <a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a> <a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a> <a href="/tags/Method/" style="font-size: 10px;">Method</a> <a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a> <a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -152,7 +187,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -162,6 +197,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/20/四年后/">四年后</a>
+          </li>
         
           <li>
             <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
@@ -179,10 +218,6 @@
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
           </li>
         
-          <li>
-            <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -196,7 +231,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Zhangxi-Lam<br>
+      &copy; 2017 Zhangxi-Lam<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -214,11 +249,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

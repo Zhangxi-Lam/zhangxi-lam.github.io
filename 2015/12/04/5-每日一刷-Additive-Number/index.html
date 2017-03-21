@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
 <meta property="og:description" content="[每日一刷] (Additive Number)**Additive number is a string whose digits can form additive sequence.A valid additive sequence should contain at least three numbers. Except for the first two numbers, each su">
+<meta property="og:updated_time" content="2017-03-20T16:52:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一刷-Additive-Number">
 <meta name="twitter:description" content="[每日一刷] (Additive Number)**Additive number is a string whose digits can form additive sequence.A valid additive sequence should contain at least three numbers. Except for the first two numbers, each su">
@@ -21,7 +22,7 @@
     <link rel="icon" href="/css/images/favicon.ico">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -50,7 +51,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://zhangxi-lam.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zhangxi-lam.github.io"></form>
       </div>
     </div>
   </div>
@@ -75,7 +76,7 @@
         <span class="icon"></span>
         Follow
       </a>
-      <a href="mailto:zl1422@nyu.edu" class="btn email">
+      <a href="mailto:jesse.linzx@gmail.com" class="btn email">
         <span class="icon"></span>
         Email
       </a>
@@ -114,12 +115,12 @@
 <p>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.<br>1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8</p>
 <p>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br>1 + 99 = 100, 99 + 100 = 199**</p>
 <p></p><h4>解题思路</h4><br>这题个人感觉应该没什么trick，只能硬算了，整个数列其实都是由最开始的两个数决定的，而最开始的两个数只能<br>通过枚举的方法来尝试符不符合条件了。这题的关键就是要仔细了吧-.-<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env </span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span><br><span class="line">时间复杂度 O(n^2)</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditiveNumber</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type num: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        n = len(num)</span><br><span class="line">        s1 = <span class="number">0</span>  </span><br><span class="line">        len1, len2 = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> len1 &lt;= n/<span class="number">2</span>:</span><br><span class="line">            s2 = s1 + len1</span><br><span class="line">            len2 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> len2 &lt;= n/<span class="number">2</span>:</span><br><span class="line">                num1 = int(num[s1:s1+len1])</span><br><span class="line">                num2 = int(num[s2:s2+len2])</span><br><span class="line">                <span class="keyword">if</span> s2+len2 == n:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> self.isAdditive(num, num1, num2, s2+len2, n):</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">if</span> num[s2] == <span class="string">'0'</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                len2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num[s1] == <span class="string">'0'</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            len1 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditive</span><span class="params">(self, num, num1, num2, pos, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> pos == end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        target = num1 + num2</span><br><span class="line">        i = <span class="number">1</span> <span class="comment"># target位数</span></span><br><span class="line">        <span class="keyword">while</span> target / <span class="number">10</span>**i != <span class="number">0</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        num3 = int(num[pos:pos+i])</span><br><span class="line">        <span class="keyword">if</span> target == num3:</span><br><span class="line">            <span class="keyword">return</span> self.isAdditive(num, num2, num3, pos+i, end)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">时间复杂度 O(n^2)</div><div class="line">"""</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditiveNumber</span><span class="params">(self, num)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type num: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        n = len(num)</div><div class="line">        s1 = <span class="number">0</span>  </div><div class="line">        len1, len2 = <span class="number">1</span>, <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> len1 &lt;= n/<span class="number">2</span>:</div><div class="line">            s2 = s1 + len1</div><div class="line">            len2 = <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> len2 &lt;= n/<span class="number">2</span>:</div><div class="line">                num1 = int(num[s1:s1+len1])</div><div class="line">                num2 = int(num[s2:s2+len2])</div><div class="line">                <span class="keyword">if</span> s2+len2 == n:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="keyword">if</span> self.isAdditive(num, num1, num2, s2+len2, n):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">                <span class="keyword">if</span> num[s2] == <span class="string">'0'</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                len2 += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> num[s1] == <span class="string">'0'</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            len1 += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAdditive</span><span class="params">(self, num, num1, num2, pos, end)</span>:</span></div><div class="line">        <span class="keyword">if</span> pos == end:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        target = num1 + num2</div><div class="line">        i = <span class="number">1</span> <span class="comment"># target位数</span></div><div class="line">        <span class="keyword">while</span> target / <span class="number">10</span>**i != <span class="number">0</span>:</div><div class="line">            i += <span class="number">1</span></div><div class="line">        num3 = int(num[pos:pos+i])</div><div class="line">        <span class="keyword">if</span> target == num3:</div><div class="line">            <span class="keyword">return</span> self.isAdditive(num, num2, num3, pos+i, end)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cihwz0jkr0011u39txqxn076m" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/12/04/5-每日一刷-Additive-Number/" data-id="cj0iwfopn000ivg9ghzdr9qnr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
@@ -158,7 +159,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/乱七八糟/">乱七八糟</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -167,7 +168,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱七八糟/">乱七八糟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lintcode/">Lintcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Method/">Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一刷/">每日一刷</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每日一题/">每日一题</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -176,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a><a href="/tags/Google/" style="font-size: 12.5px;">Google</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a><a href="/tags/Method/" style="font-size: 10px;">Method</a><a href="/tags/乱七八糟/" style="font-size: 10px;">乱七八糟</a><a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a><a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
+      <a href="/tags/Data-Structure/" style="font-size: 12.5px;">Data Structure</a> <a href="/tags/Google/" style="font-size: 12.5px;">Google</a> <a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a> <a href="/tags/Lintcode/" style="font-size: 10px;">Lintcode</a> <a href="/tags/Method/" style="font-size: 10px;">Method</a> <a href="/tags/每日一刷/" style="font-size: 17.5px;">每日一刷</a> <a href="/tags/每日一题/" style="font-size: 15px;">每日一题</a>
     </div>
   </div>
 
@@ -185,7 +186,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -195,6 +196,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/20/四年后/">四年后</a>
+          </li>
         
           <li>
             <a href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
@@ -212,10 +217,6 @@
             <a href="/2015/12/05/6-每日一刷-Range-Sum-Query-2D-Immutable/">每日一刷-Range-Sum-Query-2D-Immutable</a>
           </li>
         
-          <li>
-            <a href="/2015/12/04/5-每日一刷-Additive-Number/">每日一刷-Additive-Number</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -229,7 +230,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Zhangxi-Lam<br>
+      &copy; 2017 Zhangxi-Lam<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -247,11 +248,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

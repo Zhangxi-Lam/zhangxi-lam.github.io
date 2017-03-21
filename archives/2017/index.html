@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zhangxi-Lam的博客</title>
+  <title>Archives: 2017 | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/index.html">
+<meta property="og:url" content="http://zhangxi-lam.github.io/archives/2017/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zhangxi-Lam的博客">
@@ -143,121 +143,6 @@
 
 
   
-    <article id="post-两个指针-TwoPointer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/08/两个指针-TwoPointer/" class="article-date">
-  <time datetime="2015-12-08T05:45:11.000Z" itemprop="datePublished">2015-12-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/08/两个指针-TwoPointer/">两个指针-TwoPointer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[两个指针] (Two Pointer)</p>
-
-<p>两个指针的题目主要分成三种情况：</p>
-<p></p><h2>a.对撞型</h2><p></p>
-<ol>
-<li><p>2Sum 类<br>例题: Trapping Water<br>一个指针i指向数组头，一个指针j指向数组尾。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> i != j:</div><div class="line">  <span class="keyword">if</span> num[i] &lt; num[j]:</div><div class="line">    i += <span class="number">1</span></div><div class="line">  <span class="keyword">elif</span> num[i] &gt; num[j]:</div><div class="line">    j -= <span class="number">1</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    i += <span class="number">1</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>Partition类<br>例题: 将一个数组分成两部分，一部分小与k，一部分大于k<br>一个指针i指向数组头，一个指针j指向数组尾。i表示在i之前的元素都小于k，j表示在j之后的元素都大于k。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> i != j:</div><div class="line">  <span class="keyword">while</span> num[i] &lt; k:</div><div class="line">    i += <span class="number">1</span></div><div class="line">  <span class="keyword">while</span> num[j] &gt; k:</div><div class="line">    j -= <span class="number">1</span></div><div class="line">  <span class="keyword">if</span> i &gt; j:</div><div class="line">    <span class="keyword">break</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    swap(i, j)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>总结</strong><br>通过对撞型指针优化算法，根本上其实<strong>要证明不用扫描多余状态</strong></p>
-<p></p><h2>b.前向型</h2><p></p>
-<ol>
-<li><p>窗口类<br>例题: Minimum Window Substring<br>窗口类指针模板j</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">j = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</div><div class="line">  <span class="keyword">while</span> j &lt; n: </div><div class="line">    <span class="keyword">if</span> 满足条件:</div><div class="line">      j += <span class="number">1</span></div><div class="line">      更新状态</div><div class="line">    <span class="keyword">else</span> 不满足条件:</div><div class="line">      <span class="keyword">break</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>快慢类<br>两个指针i, j的pace不同，可以用来探测一个链表是否有回路</p>
-</li>
-</ol>
-<p><strong>总结</strong><br>窗口类的问题根本上其实也是<strong>要证明不用扫描多余状态</strong><br>快慢类的问题感觉和经常见的烧蜡烛的那种智力题很像。或者是环绕一圈来找list有没有cycle。</p>
-<p></p><h2>c.两个数组，两个指针</h2><p></p>
-<ol>
-<li>并行<br>例题: Merge Two Sorted Array<br>单纯的是否两个指针</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/08/两个指针-TwoPointer/" data-id="cj0iwfopx0010vg9gyknbotpk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Method/">Method</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-并查集-UnionFind" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/07/并查集-UnionFind/" class="article-date">
-  <time datetime="2015-12-07T15:53:40.000Z" itemprop="datePublished">2015-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/07/并查集-UnionFind/">并查集-UnionFind</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/07/并查集-UnionFind/" data-id="cj0iwfoq3001bvg9g1bya4yl4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/">Data Structure</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
   
 </section>
           
