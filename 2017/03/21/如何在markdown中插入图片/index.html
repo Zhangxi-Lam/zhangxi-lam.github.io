@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>每日一刷-Super-Ugly-Number | Zhangxi-Lam的博客</title>
+  <title>如何在markdown中插入图片 | Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[每日一刷] (Super Ugly Number)Write a program to find the nth super ugly number.Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.For example, [1">
+  <meta name="description" content="Markdown 语法如何在markdown中插入图片呢？首先我们先来看一个在markdown插入img的例子，这个例子来自Markdown cheatsheet12345678# Markdown code #Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一刷-Super-Ugly-Number">
-<meta property="og:url" content="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/index.html">
+<meta property="og:title" content="如何在markdown中插入图片">
+<meta property="og:url" content="http://zhangxi-lam.github.io/2017/03/21/如何在markdown中插入图片/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
-<meta property="og:description" content="[每日一刷] (Super Ugly Number)Write a program to find the nth super ugly number.Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.For example, [1">
-<meta property="og:updated_time" content="2017-03-20T16:52:33.000Z">
+<meta property="og:description" content="Markdown 语法如何在markdown中插入图片呢？首先我们先来看一个在markdown插入img的例子，这个例子来自Markdown cheatsheet12345678# Markdown code #Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images">
+<meta property="og:image" content="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png">
+<meta property="og:image" content="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png">
+<meta property="og:image" content="https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/20/%E5%9B%9B%E5%B9%B4%E5%90%8E/images/TwoYears.jpg?raw=true">
+<meta property="og:updated_time" content="2017-03-22T04:12:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一刷-Super-Ugly-Number">
-<meta name="twitter:description" content="[每日一刷] (Super Ugly Number)Write a program to find the nth super ugly number.Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.For example, [1">
+<meta name="twitter:title" content="如何在markdown中插入图片">
+<meta name="twitter:description" content="Markdown 语法如何在markdown中插入图片呢？首先我们先来看一个在markdown插入img的例子，这个例子来自Markdown cheatsheet12345678# Markdown code #Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images">
+<meta name="twitter:image" content="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png">
   
     <link rel="alternative" href="/atom.xml" title="Zhangxi-Lam的博客" type="application/atom+xml">
   
@@ -85,14 +89,14 @@
 </header>
 
         <div class="outer">
-          <section id="main"><article id="post-4_每日一刷-Super-Ugly-Number" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main"><article id="post-如何在markdown中插入图片" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/12/04/4_每日一刷-Super-Ugly-Number/" class="article-date">
-  <time datetime="2015-12-04T06:06:52.000Z" itemprop="datePublished">2015-12-04</time>
+    <a href="/2017/03/21/如何在markdown中插入图片/" class="article-date">
+  <time datetime="2017-03-22T03:34:10.000Z" itemprop="datePublished">2017-03-21</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/小攻略/">小攻略</a>
   </div>
 
   </div>
@@ -103,7 +107,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      每日一刷-Super-Ugly-Number
+      如何在markdown中插入图片
     </h1>
   
 
@@ -111,18 +115,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p></p><p>[每日一刷] (Super Ugly Number)</p><br><strong>Write a program to find the nth super ugly number.<br>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br>For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</strong><p></p>
-<p><strong>Example:</strong><br>Given: primes = [2, 7, 13, 19], n = 10<br>Return 26</p>
-<p></p><h4>解题思路</h4><br>这题就是不断的选下一个最小的质数，因此可以想到用heap。<br>既然是一个Super Ugly的题，就用一个Super Ugly的做法吧- -<p></p>
-<p><em>Python:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> *</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthSuperUglyNumber</span><span class="params">(self, n, primes)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :type primes: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        length = len(primes)</div><div class="line">        idxs = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length) ]</div><div class="line">        minLists = []</div><div class="line">        h = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(length):</div><div class="line">            heappush(h, [primes[i], i])</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n):</div><div class="line">            tup = heappop(h) <span class="comment"># 第i-1大的数</span></div><div class="line">            num, index = tup[<span class="number">0</span>], tup[<span class="number">1</span>]  <span class="comment"># 第i-1大的数和index</span></div><div class="line">            minLists.append([num, index])</div><div class="line">            idx = idxs[index]</div><div class="line">            <span class="keyword">while</span> minLists[idx][<span class="number">1</span>] &gt; index:</div><div class="line">                idx += <span class="number">1</span></div><div class="line">            nextNum = primes[index] * minLists[idx][<span class="number">0</span>]</div><div class="line">            idxs[index] = idx + <span class="number">1</span></div><div class="line">            heappush(h, [nextNum, index])</div><div class="line">        <span class="keyword">return</span> h[<span class="number">0</span>][<span class="number">0</span>]</div></pre></td></tr></table></figure></p>
+        <h1 id="Markdown_语法">Markdown 语法</h1><p>如何在markdown中插入图片呢？首先我们先来看一个在markdown插入img的例子，这个例子来自<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code" target="_blank" rel="external">Markdown cheatsheet</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Markdown code #</div><div class="line">Inline-style: </div><div class="line">![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 1&quot;)</div><div class="line"></div><div class="line">Reference-style: </div><div class="line">![alt text][logo]</div><div class="line"></div><div class="line">[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 2&quot;</div></pre></td></tr></table></figure></p>
+<p>Inline-style:<br><img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
+<p>Reference-style:<br><img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 2"></p>
+<p>用Chrome自带的Developer Tool我们可以看到markdown代码变成了如下的HTML代码：</p>
+<p>从中我们可以大概知道，markdown中img的语法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![&quot;img alt属性的值&quot;](&quot;img url或者相对路径也可以&quot; + &quot;img title属性的值&quot;)</div><div class="line"></div><div class="line">alt属性：图片不能显示时出现的替代文字(可不写)</div><div class="line">title属性：鼠标悬置于图片上时出现的标题文字(可不写)</div></pre></td></tr></table></figure></p>
+<h1 id="图片如何保存">图片如何保存</h1><p>解决的markdown语法之后，接着要解决的是图片保存到哪里的问题。在这里我暂时找到了三种解决方法</p>
+<h3 id="方法一">方法一</h3><p><strong>把图片上传到新浪微博，用新浪微博来当图床</strong><br>这个方法我没有试过，因为我没有新浪微博账号-_-||</p>
+<h3 id="方法二">方法二</h3><p><strong>把图片上传到Github，在github点击raw获得图片路径</strong><br>不知道为什么，我的github上面找不到那个raw按钮，所以我选择的是第三种方法</p>
+<h3 id="方法三">方法三</h3><p><strong>把图片上传到Github，在url链接后加上”?raw=true”</strong><br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/20/%E5%9B%9B%E5%B9%B4%E5%90%8E/images/TwoYears.jpg?raw=true)</div></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/20/%E5%9B%9B%E5%B9%B4%E5%90%8E/images/TwoYears.jpg?raw=true" alt=""></p>
+<p>当然大家还可以使用七牛云之类的当图床，这里就不再多说了，方法应该是差不多的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/12/04/4_每日一刷-Super-Ugly-Number/" data-id="cj0kf7wxv000b449gvkehjiuc" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2017/03/21/如何在markdown中插入图片/" data-id="cj0kf7wye0018449g5tfrmmv5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一刷/">每日一刷</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
 
     </footer>
   </div>
@@ -130,19 +141,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/12/04/5-每日一刷-Additive-Number/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          每日一刷-Additive-Number
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/02/3_每日一刷-Range-Sum-Query-Mutable/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/03/20/四年后/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">3_每日一刷-Range_Sum_Query_Mutable</div>
+      <div class="article-nav-title">四年后</div>
     </a>
   
 </nav>

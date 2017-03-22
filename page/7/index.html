@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Lintcode | Zhangxi-Lam的博客</title>
+  <title>Zhangxi-Lam的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Zhangxi-Lam的博客">
-<meta property="og:url" content="http://zhangxi-lam.github.io/tags/Lintcode/index.html">
+<meta property="og:url" content="http://zhangxi-lam.github.io/page/7/index.html">
 <meta property="og:site_name" content="Zhangxi-Lam的博客">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zhangxi-Lam的博客">
@@ -83,14 +83,14 @@
         <div class="outer">
           <section id="main">
   
-    <article id="post-3_每日一题-Trap-Water" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/19/3_每日一题-Trap-Water/" class="article-date">
-  <time datetime="2015-11-20T03:06:44.000Z" itemprop="datePublished">2015-11-19</time>
+    <a href="/2015/11/15/Hello-world/" class="article-date">
+  <time datetime="2015-11-16T03:35:17.000Z" itemprop="datePublished">2015-11-15</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/乱七八糟/">乱七八糟</a>
   </div>
 
   </div>
@@ -101,7 +101,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/19/3_每日一题-Trap-Water/">每日一题-Trap_Water</a>
+      <a class="article-title" href="/2015/11/15/Hello-world/">Hello world</a>
     </h1>
   
 
@@ -109,16 +109,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[每日一题] (Trapping Rain Water II)<br><strong>Trapping Rain Water II<br>Given n x m non-negative integers representing an elevation map 2d where the area of each cell is 1 x 1, compute how much water it is able to trap after raining.</strong><br>Example<br>Given 5*4 matrix<br><br>[12,13,0,12]<br>[13,4,13,12]<br>[13,8,10,12]<br>[12,13,12,12]<br>[13,13,13,13]<br>return 14.<br><br></p><h4>解题思路</h4><br>使用最小堆<br>1.对矩形的四周建堆<br>2.对于堆中每一元素，查探其四邻域中未查探的位置<br>3.如果h小于当前值，则更新水池容量，并将该位置加入堆中<br>4.如果h大于等于当前值，则直接加入堆中<br>最小堆中每次取的元素为当前水池中最短边的长度，如果每次寻找时发现了比最短边低的位置，则可以将水导入（更新水池容量），否则直接将该位置加入到水池中形成新的边缘<br><br><h6>笔记</h6><br>&emsp;&emsp;最小堆的题目的特征(不断找最小)，对Python中的最小堆的使用<br><br><h6><em>Python:</em></h6><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env </span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> heapq</div><div class="line">M = [[<span class="number">12</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">4</span>, <span class="number">13</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>], [<span class="number">12</span>, <span class="number">13</span>, <span class="number">12</span>, <span class="number">12</span>], [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>]]</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapWater</span><span class="params">(self, M)</span>:</span></div><div class="line">        heap = []</div><div class="line">        heapq.heapify(heap)</div><div class="line">        d = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">-1</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">-1</span>, <span class="number">0</span>)]</div><div class="line">        n = len(M)</div><div class="line">        m = len(M[<span class="number">0</span>])</div><div class="line">        visit = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(m)] <span class="keyword">for</span> I <span class="keyword">in</span> xrange(n)]</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</div><div class="line">            <span class="keyword">for</span> I <span class="keyword">in</span> xrange(m):</div><div class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> I == <span class="number">0</span> <span class="keyword">or</span> i == n<span class="number">-1</span> <span class="keyword">or</span> I == m<span class="number">-1</span>:</div><div class="line">                    heapq.heappush(heap, (M[i][I], i, I))</div><div class="line">                    visit[i][I] = <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> heap != []:</div><div class="line">            this = heapq.heappop(heap)</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">4</span>):</div><div class="line">                h = this[<span class="number">0</span>]</div><div class="line">                nr = this[<span class="number">1</span>] + d[i][<span class="number">0</span>]</div><div class="line">                nl = this[<span class="number">2</span>] + d[i][<span class="number">1</span>]</div><div class="line">                <span class="keyword">if</span> nr &lt; <span class="number">0</span> <span class="keyword">or</span> nl &lt; <span class="number">0</span> <span class="keyword">or</span> nr &gt;= n <span class="keyword">or</span> nl &gt;= m:</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                <span class="keyword">if</span> visit[nr][nl] == <span class="number">1</span>:</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                visit[nr][nl] = <span class="number">1</span></div><div class="line">                tmp = M[nr][nl]</div><div class="line">                <span class="keyword">if</span> tmp &lt; h:</div><div class="line">                    res += h - tmp</div><div class="line">                    tmp = h</div><div class="line">                heapq.heappush(heap, (tmp, nr, nl))</div><div class="line"></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure><br><br><p></p>
+        <p>&emsp;&emsp;忙活了几天再加上大四瞎弄的一段时间，总算暂时使用github和hexo搭成了一个博客了。然而hexo中的有些东西还不是很了解-.-，以后再慢慢改吧！话说hexo还真是一个很好用的东西啊，如果自己也能写出这么好用的程序就好了……<br><br>&emsp;&emsp;博客以后可能会贴一点刷题小组每天一题的解答，可能贴一点自己写的一些小程序，或者可能会贴一点收藏的教程。万事开头难，一步一步来吧！<br><br>&emsp;&emsp;Markdown用得还不习惯，第一篇博客就到这里了吧。</p><br><p>&emsp;&emsp;总之希望大家可以多捧场啦:)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2015/11/19/3_每日一题-Trap-Water/" data-id="cj0kf7wxq0009449g02h1ggmy" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2015/11/15/Hello-world/" data-id="cj0kf7wy90010449gnk734nc6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lintcode/">Lintcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每日一题/">每日一题</a></li></ul>
-
     </footer>
   </div>
   
@@ -126,6 +124,10 @@
 
 
   
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    </nav>
   
 </section>
           
