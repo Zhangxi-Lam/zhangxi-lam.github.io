@@ -112,11 +112,11 @@
         <h1 id="Markdown_语法">Markdown 语法</h1><p>如何在markdown中插入图片呢？首先我们先来看一个在markdown插入img的例子，这个例子来自<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code" target="_blank" rel="external">Markdown cheatsheet</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Markdown code #</div><div class="line">Inline-style: </div><div class="line">![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 1&quot;)</div><div class="line"></div><div class="line">Reference-style: </div><div class="line">![alt text][logo]</div><div class="line"></div><div class="line">[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 2&quot;</div></pre></td></tr></table></figure></p>
 <p>Inline-style:<br><img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
 <p>Reference-style:<br><img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 2"></p>
-<p>用Chrome自带的Developer Tool我们可以看到markdown代码变成了如下的HTML代码：</p>
+<p>用Chrome自带的Developer Tool我们可以看到markdown代码变成了如下的HTML代码：<br><img src="https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/21/%E5%A6%82%E4%BD%95%E5%9C%A8markdown%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/images/html.png?raw=true" alt="HTML code"></p>
 <p>从中我们可以大概知道，markdown中img的语法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![&quot;img alt属性的值&quot;](&quot;img url或者相对路径也可以&quot; + &quot;img title属性的值&quot;)</div><div class="line"></div><div class="line">alt属性：图片不能显示时出现的替代文字(可不写)</div><div class="line">title属性：鼠标悬置于图片上时出现的标题文字(可不写)</div></pre></td></tr></table></figure></p>
 <h1 id="图片如何保存">图片如何保存</h1><p>解决的markdown语法之后，接着要解决的是图片保存到哪里的问题。在这里我暂时找到了三种解决方法</p>
 <h3 id="方法一">方法一</h3><p><strong>把图片上传到新浪微博，用新浪微博来当图床</strong><br>这个方法我没有试过，因为我没有新浪微博账号-_-||</p>
-<h3 id="方法二">方法二</h3><p><strong>把图片上传到Github，在github点击raw获得图片路径</strong><br>不知道为什么，我的github上面找不到那个raw按钮，所以我选择的是第三种方法</p>
+<h3 id="方法二">方法二</h3><p><strong>把图片上传到Github，在github点击raw获得图片路径</strong><br><img src="https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/21/%E5%A6%82%E4%BD%95%E5%9C%A8markdown%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/images/raw.png?raw=true" alt="raw example"><br>不知道为什么，我的github上面找不到那个raw按钮，所以我选择的是第三种方法</p>
 <h3 id="方法三">方法三</h3><p><strong>把图片上传到Github，在url链接后加上”?raw=true”</strong><br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/20/%E5%9B%9B%E5%B9%B4%E5%90%8E/images/TwoYears.jpg?raw=true)</div></pre></td></tr></table></figure></p>
 <p><img src="https://github.com/Zhangxi-Lam/zhangxi-lam.github.io/blob/master/2017/03/20/%E5%9B%9B%E5%B9%B4%E5%90%8E/images/TwoYears.jpg?raw=true" alt=""></p>
 <p>当然大家还可以使用七牛云之类的当图床，这里就不再多说了，方法应该是差不多的</p>
@@ -124,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhangxi-lam.github.io/2017/03/21/如何在markdown中插入图片/" data-id="cj0kgjlgp001bf09g9bvir519" class="article-share-link">Share</a>
+      <a data-url="http://zhangxi-lam.github.io/2017/03/21/如何在markdown中插入图片/" data-id="cj0kglax90017hw9gn7c6ac3i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
